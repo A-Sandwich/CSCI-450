@@ -1,0 +1,18 @@
+body{
+	background-color: #580EAD;
+	color: white;
+}
+
+button.signIn{
+	background-color: #00AB6F;
+	
+}
+
+button.signIn:hover{
+	background-color: #006F48;
+}
+
+h1.signIn{
+	text-align: center;
+	
+}
