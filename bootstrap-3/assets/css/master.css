@@ -1,7 +1,4 @@
-body{
-	background-color: #580EAD;
-	color: white;
-}
+
 
 button.signIn{
 	background-color: #00AB6F;
@@ -14,5 +11,10 @@ button.signIn:hover{
 
 h1.signIn{
 	text-align: center;
+	
+}
+
+.navbar{
+	background-image: url("textures/binding_dark.png");
 	
 }
