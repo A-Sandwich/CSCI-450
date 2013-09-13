@@ -1,3 +1,8 @@
+<?php
+include "assets/db_connect.php";
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,6 +21,9 @@
 		<link href="bootstrap-3/assets/css/master.css" rel="stylesheet">
 		
 		
+		<script src="js/sha512.js"></script>
+		<script src="js/forms.js"></script>
+			
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 			<script src="../../assets/js/html5shiv.js"></script>
@@ -26,13 +34,13 @@
 	<body>
 	<h1 class="signIn">Novus Garage</h1>
 		<div class="container">
-			<form class="form-signin">
-				<input type="text" class="form-control" Placeholder="Email Address" autofocus>
-				<input type="password" class="form-control" Placeholder="Password">
+			<form class="form-signin" action="assets/process_login.php" method="post">
+				<input type="text" class="form-control" name="email" Placeholder="Email Address" autofocus>
+				<input type="password" class="form-control" name="password" Placeholder="Password">
 				<label class="checkbox">
 					<input type="checkbox" value="remember-me"> Remember Me
 				</label>
-				<button class="btn btn-lg btn-block btn-primary signIn" type="submit">Sign Up</button>
+				<button class="btn btn-lg btn-block btn-primary signIn" type="submit" onClick="formhash(this.form, this.form.password)">Sign In</button>
 			</form>
 		</div>
   
