@@ -8,21 +8,21 @@ include "assets/db_connect.php";
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="bootstrap-3/assets/ico/favicon.png">
+		<link rel="shortcut icon" href="assets/bootstrap-3/assets/ico/favicon.png">
 		
 		<title>Novus Garage - Sign In</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
-		<link href="bootstrap-3/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="bootstrap-3/assets/css/bootstrap.css" rel="stylesheet">
-		<link href="bootstrap-3/assets/css/signIn.css" rel="stylesheet">
+		<link href="assets/bootstrap-3/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="assets/bootstrap-3/assets/css/bootstrap.css" rel="stylesheet">
+		<link href="assets/bootstrap-3/assets/css/signIn.css" rel="stylesheet">
 		
 		<!-- Custom CSS -->
-		<link href="bootstrap-3/assets/css/master.css" rel="stylesheet">
+		<link href="assets/bootstrap-3/assets/css/master.css" rel="stylesheet">
 		
 		
-		<script src="js/sha512.js"></script>
-		<script src="js/forms.js"></script>
+		<script src="assets/js/sha512.js"></script>
+		<script src="assets/js/forms.js"></script>
 			
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -49,6 +49,6 @@ include "assets/db_connect.php";
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	   
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="bootstrap-3/assets/js/bootstrap.min.js"></script>
+	    <script src="assets/bootstrap-3/assets/js/bootstrap.min.js"></script>
 	</body>
 </html>	
