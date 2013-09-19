@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;CSCI-450/index.php&apos; to &apos;index.html&apos;" description="Rename resource &apos;index.php&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="index.php" name="index.html" stamp="1379043056044" updateReferences="true"/>
+</session>
