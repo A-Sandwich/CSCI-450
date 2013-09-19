@@ -14,6 +14,7 @@ if(isset($_POST['email'], $_POST['p']))
 	$password = hash('sha512', $password.$random_salt);
 	
 	$insert_new_user_query = $mysqli->prepare("INSERT INTO users (username, email, password, salt, dob) VALUES ('$username','$email','$password','$random_salt','$dob')");
+	$insert_new_user_query->execute();
    	
 }
 else
