@@ -18,3 +18,15 @@ h1.signIn{
 	background-image: url("textures/binding_dark.png");
 	
 }
+
+body{
+	background-image: url("../../../css/grey_wash_wall.png");
+}
+
+.jumbotron{
+	/*background-color: white;*/
+}
+
+.sidebar-nav{
+	background-color: white;
+}
