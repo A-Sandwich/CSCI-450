@@ -25,8 +25,13 @@ body{
 
 .jumbotron{
 	/*background-color: white;*/
+	background-image: url("../../../css/subtle_grunge.png");
 }
 
 .sidebar-nav{
-	background-color: white;
+	background-image: url("../../../css/subtle_grunge.png");
+}
+
+.btn-default{
+	background-image: url("../../../css/subtle_grunge.png");
 }

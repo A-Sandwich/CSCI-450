@@ -37,9 +37,9 @@
         		</div>
         		<div class="collapse navbar-collapse">
           			<ul class="nav navbar-nav">
-	            		<li class="active"><a href="#">Home</a></li>
-			            <li><a href="#about">About</a></li>
-			            <li><a href="#contact">Contact</a></li>
+	            		<li class="active"><a href="index.php">Home</a></li>
+			            <li><a href="signup.php">Register</a></li>
+			            <li><a href="login.php">Sign In</a></li>
          	 		</ul>
         		</div><!-- /.nav-collapse -->
 			</div><!-- /.container -->
@@ -54,7 +54,7 @@
           		</p>
 				<div class="jumbotron">
 	            	<h1>Novus Garage</h1>
-	            	<p>You tried to repair your car and now you have to take the bus. High Five.</p>
+	            	<p>Novus garage is your one stop shop to track repairs, maintenance and mpg!</p>
           		</div>
           		<div class="row">
 	        		<div class="col-6 col-sm-6 col-lg-4">
@@ -103,8 +103,8 @@
 				<div class="well sidebar-nav">
 					<ul class="nav">
 						<li>Sidebar</li>
-						<li class="active"><a href="#">Link</a></li>
-						<li><a href="#">Link</a></li>
+						<li class="active"><a href="signup.php">Register</a></li>
+						<li><a href="login.php">Sign In</a></li>
 						<li><a href="#">Link</a></li>
 						<li>Sidebar</li>
 						<li><a href="#">Link</a></li>
