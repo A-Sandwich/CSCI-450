@@ -50,5 +50,6 @@ include "assets/db_connect.php";
 	   
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
 	    <script src="assets/bootstrap-3/assets/js/bootstrap.min.js"></script>
+
 	</body>
 </html>	

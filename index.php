@@ -4,15 +4,15 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="Novus" content="">
-		<link rel="shortcut icon" href="bootstrap-3/assets/ico/favicon.png">
+		<link rel="shortcut icon" href="assets/bootstrap-3/assets/ico/favicon.png">
 
 		<title>Novus Garage</title>
 
 		<!-- Bootstrap core CSS -->
-		<link href="bootstrap-3/assets/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/bootstrap-3/assets/css/bootstrap.min.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link href="bootstrap-3/assets/css/offcanvas.css" rel="stylesheet">
+		<link href="assets/bootstrap-3/assets/css/offcanvas.css" rel="stylesheet">
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -20,7 +20,7 @@
 			<script src="bootstrap-3/assets/js/respond.min.js"></script>
 		<![endif]-->
 		
-		<link href="bootstrap-3/assets/css/master.css" rel="stylesheet">
+		<link href="assets/bootstrap-3/assets/css/master.css" rel="stylesheet">
 		
 	</head>
 	
@@ -103,7 +103,7 @@
 	    ================================================== -->
 	    <!-- Placed at the end of the document so the pages load faster -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	    <script src="bootstrap-3/assets/js/bootstrap.min.js"></script>
-	    <script src="bootstrap-3/assets/js/offcanvas.js"></script>
+	    <script src="assets/bootstrap-3/assets/js/bootstrap.min.js"></script>
+	    <script src="assets/bootstrap-3/assets/js/offcanvas.js"></script>
 	</body>
 </html>
