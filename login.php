@@ -40,7 +40,7 @@ include "assets/db_connect.php";
 				<label class="checkbox">
 					<input type="checkbox" value="remember-me"> Remember Me
 				</label>
-				<button class="btn btn-lg btn-block btn-primary signIn" type="submit" onClick="formhash(this.form, this.form.password)">Sign In</button>
+				<button class="btn btn-lg btn-block btn-primary signIn" type="submit" onclick="formhash(this.form, this.form.password)">Sign In</button>
 			</form>
 		</div>
   
