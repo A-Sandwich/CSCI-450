@@ -35,7 +35,7 @@ include "assets/db_connect.php";
 	<h1 class="signIn">Novus Garage</h1>
 		<div class="container">
 			<form class="form-signin" action="assets/process_login.php" method="post">
-				<input type="text" class="form-control" name="email" Placeholder="Email Address" autofocus>
+				<input type="text" class="form-control" name="email" id="email" Placeholder="Email Address" autofocus>
 				<input type="password" class="form-control" name="password" Placeholder="Password">
 				<label class="checkbox">
 					<input type="checkbox" value="remember-me"> Remember Me
@@ -47,6 +47,13 @@ include "assets/db_connect.php";
   
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script>
+			// Functions
+			function emailIsValid(email) {
+				var rex = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+				return rex.test(email);
+			}	// checks the pattern that the email address was entered and returns bool emailIsValid
+		</script>
 	   
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
 	    <script src="assets/bootstrap-3/assets/js/bootstrap.min.js"></script>
