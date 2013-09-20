@@ -34,12 +34,16 @@ if(isset($_POST['email'], $_POST['p']))
 			<p>Thanks for letting us help you be the most responsible car owner you can be!</p>
 			<p>Novus</p>
 		</body>
-	</html>
+		</html>
 	";
 	$from = "noreply@novus.site90.com";
-	$headers = "From:" . $from;
+	$headers  = "MIME-Version: 1.0\r\n";
+ 	$headers .= "Content-type: text/html; charset: utf8\r\n";
+ 	$headers .= "From: ". $from . "\r\n";
 	mail($to,$subject,$message,$headers);
-	   	
+	
+	// Send the user to the login page
+	header('Location: ../login.php');	
 }
 else
 { 

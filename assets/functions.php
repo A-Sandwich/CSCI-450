@@ -45,7 +45,7 @@ function login($email, $password, $mysqli)
          		}
 				else
 				{
-            		// Password is not correct, so we should like record this attempt in the database
+            		// Password is not correct, so we should record this attempt in the database
             		$now = time();
             		$mysqli->query("INSERT INTO login_attempts (user_id, time) VALUES ('$user_id', '$now')");
             		return false;
