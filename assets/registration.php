@@ -21,20 +21,23 @@ if(isset($_POST['email'], $_POST['p']))
 	$to = $email;
 	$subject = "Welcome to Novus Garage";
 	$message = "
-		<html>
-		<body style='background-color:#CCE0FF; color: #001F4C;'>
-			<h2>Novus Garage</h2>
-			<h3>Welcome to true responsible car ownership</h3>
-			<p> Hey,".$username.", we just wanted to let you know we appreciate you registering with us and remind you your account details (as if you would forget!)...</p>
-			<h4>Account details</h4>
-			<p>username: ".$username."<br>
-			email: ".$email."<br>
-			date of birth: ".$dob." <br>
-			</p>
-			<p>Thanks for letting us help you be the most responsible car owner you can be!</p>
-			<p>Novus</p>
+	<html>
+		<body style='background-color:#666666; color: #FFFFFF; font-family: sans-serif;'>
+			<div><span style='font-size: 2em;'>Novus Garage</span><br>
+			<span style='font-size:1.3em;'>Welcome to true responsible car ownership</span></div>
+			<p> Hey, <strong><em>".$username."</em></strong>, we just wanted to let you know we appreciate you <br>registering with us and remind you your account details (as if you would forget!)...</p>
+			<div style='background-color: #FFFFFF; color:#333333; width:50%'>
+				<p><strong>Username: </strong>".$username."<br>
+				<strong>email: </strong>".$email."<br>
+				<strong>date of birth: </strong>".$dob." <br>
+				</p>
+			</div>
+			<p>Thanks for letting us help you be the most responsible car owner you can be! <br><a style='color:#FFFFFF; font-weight:bold;' href='http://www.novus.site90.com/login.php'>Log into my Novus Garage account</a></p>
+			
+			<br><br><p>Sincerely, <br><br>
+			Us Novus Geeks</p>
 		</body>
-		</html>
+	</html>
 	";
 	$from = "noreply@novus.site90.com";
 	$headers  = "MIME-Version: 1.0\r\n";

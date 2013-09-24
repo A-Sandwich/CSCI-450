@@ -52,7 +52,7 @@ include "assets/db_connect.php";
 			function emailIsValid(email) {
 				var rex = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
 				return rex.test(email);
-			}	// checks the pattern that the email address was entered and returns bool emailIsValid
+			}	// checks the pattern of the email address that was entered and returns bool emailIsValid
 		</script>
 	   
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
