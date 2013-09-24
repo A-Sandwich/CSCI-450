@@ -1,0 +1,50 @@
+
+
+button.signIn{
+	background-color: #00AB6F;
+	
+}
+
+button.signIn:hover{
+	background-color: #006F48;
+}
+
+h1.signIn{
+	text-align: center;
+	
+}
+
+.navbar{
+	background-image: url("textures/binding_dark.png");
+	
+}
+
+body{
+	background-image: url("textures/grey_wash_wall.png");
+}
+
+.jumbotron{
+	/*background-color: white;*/
+	background-image: url("textures/subtle_grunge.png");
+}
+
+.sidebar-nav{
+	background-image: url("textures/subtle_grunge.png");
+}
+
+.btn-default{
+	background-image: url("textures/subtle_grunge.png");
+}
+
+.feed{
+	background-image: url("textures/subtle_grunge.png");
+	margin-top: 10px;
+	border-radius: 5px;
+	/*width: 31.7%;*/
+	/*margin-left: 10px;*/
+}
+
+ul.sidebar-nav li a:hover{
+	background-image: url("textures/subtle_grunge.png");
+	
+}
