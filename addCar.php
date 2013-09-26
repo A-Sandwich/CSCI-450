@@ -25,26 +25,9 @@
 	</head>
 	
 	<body class="main">
-		<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-			<div class="container">
-       			<div class="navbar-header">
-  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	            		<span class="icon-bar"></span>
-	            		<span class="icon-bar"></span>
-	            		<span class="icon-bar"></span>
-          			</button>
-					<a class="navbar-brand" href="#">Novus Garage</a>
-        		</div>
-        		<div class="collapse navbar-collapse">
-          			<ul class="nav navbar-nav">
-	            		<li class="active"><a href="index.php">Home</a></li>
-			            <li><a href="signup.php">Register</a></li>
-			            <li><a href="login.php">Sign In</a></li>
-         	 		</ul>
-        		</div><!-- /.nav-collapse -->
-			</div><!-- /.container -->
-    	</div><!-- /.navbar -->
-
+		<?php
+			require 'assets/files/navigation.php';
+		?>	
 		<div class="container">
 
 		<div class="row row-offcanvas row-offcanvas-right">
@@ -57,16 +40,21 @@
 	            	<p>Park your car in Novus Garage!</p>
           		</div>
           		<div class="feed container">
-	          		<form >
+	          		<form action="process_car.php" method="post">
 	          			<div class="row">
 		        			<div class=" col-3 col-sm-6 col-lg-6">
-			          			<label for="carName">Car Name:</label><input type="text" id="carName" name="carName"><br>
+			          			<label for="carName">Give your car a nickname:</label><input type="text" id="carName" name="carName"><br>
 			          			<label for="milage">Milage:</label><input type="number" id="milage" name="milage"><br>
-			          			<label for="carMake">Make:</labeL><input type="text" id="carMake" name="carMake"><br>
-			          			<label for="carModel">Model:</label><input type="text" id="carModel" name="carModel"><br>
+			          			<label for="carMake">Make:</labeL><select name="carMake" id="carMake">
+			          				<option val="other"></option>
+			          			</select><br><!--dropdown-->
+			          			<label for="carModel">Model:</labeL><select name="carModel" id="carModel">
+			          				<option val="other"></option>
+			          			</select><br><!--dropDown-->
 			          			<label for="carYear">Year:</label><input type="number" id="carYear" name="carYear"><br>
 			          			<label for="carColor">Color:</label><input type="text" id="carColor" name="carColor"><br>
 			          			<label for="vin">VIN:</label><input type="text" id="vin" name="vin"><br><br>
+			          			<label for="engineType">Engine Type:</label><input type="text" id="engineType" name="engineType"> Liter Engine<br><br>
 	          				</div><!--/-->
 		        			<div class=" col-3 col-sm-6 col-lg-6">
 			          			<h4>Would you like to add information about your last oil change?</h4>
@@ -88,6 +76,7 @@
 			          			</div>
 		          			</div>
 		          		</div>
+		          		<button type="submit">Save Car</button>
 	          		</form>
         		</div><!--/feed-->
         		<br>	
