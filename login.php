@@ -43,7 +43,7 @@ include "assets/db_connect.php";
 				<button class="btn btn-lg btn-block btn-primary signIn" type="submit" 
 				onclick="formhash(this.form, this.form.password); 
 				if(document.getElementById('chkRememberMe').checked) {
-					setCookie('remember',document.getElementById('email').valueOf(),10); 
+					setCookie('remember',document.getElementById('email').value,10); 
 				}">
 				Sign In</button>
 			</form>
@@ -88,7 +88,7 @@ include "assets/db_connect.php";
 			
 			// ------------START JQUERY--------------
 			$(document).ready( function() {
-				if(getCookie("remember") != "") {
+				if(getCookie("remember") != null) {
 					var email = getCookie("remember");
 					$("#email").val(email);
 				}	// if there was a remember cookie, fill in the email field with the remembered email		
