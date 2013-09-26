@@ -40,16 +40,16 @@
 	            	<p>Park your car in Novus Garage!</p>
           		</div>
           		<div class="feed container">
-	          		<form action="process_car.php" method="post">
+	          		<form name="addCarForm" id="addCarForm" action="assets/process_car.php" method="post">
 	          			<div class="row">
 		        			<div class=" col-3 col-sm-6 col-lg-6">
 			          			<label for="carName">Give your car a nickname:</label><input type="text" id="carName" name="carName"><br>
-			          			<label for="milage">Milage:</label><input type="number" id="milage" name="milage"><br>
+			          			<label for="mileage">Mileage:</label><input type="number" id="mileage" name="mileage"><br>
 			          			<label for="carMake">Make:</labeL><select name="carMake" id="carMake">
-			          				<option val="other"></option>
+			          				<option val="other">other</option>
 			          			</select><br><!--dropdown-->
 			          			<label for="carModel">Model:</labeL><select name="carModel" id="carModel">
-			          				<option val="other"></option>
+			          				<option val="other">other</option>
 			          			</select><br><!--dropDown-->
 			          			<label for="carYear">Year:</label><input type="number" id="carYear" name="carYear"><br>
 			          			<label for="carColor">Color:</label><input type="text" id="carColor" name="carColor"><br>
@@ -76,7 +76,7 @@
 			          			</div>
 		          			</div>
 		          		</div>
-		          		<button type="submit">Save Car</button>
+		          		<button type="submit" name="submit" id="savecar">Save Car</button>
 	          		</form>
         		</div><!--/feed-->
         		<br>	
@@ -103,5 +103,45 @@
 	    <script src="assets/bootstrap-3/assets/js/bootstrap.min.js"></script>
 	    <script src="assets/bootstrap-3/assets/js/offcanvas.js"></script>
 	    <script src="assets/js/showHide.js"></script>
+	    
+	    
+	     <script>
+	    	$(document).ready( function() {
+	    		// Fill make and model dropdown menus
+	    		function fillMakeDropdown()
+	    		{
+	    			$.ajax(
+    				{
+    					url: "assets/car_makes.php",
+    					cache: false,
+    					success: function(html)
+    					{
+    						console.log(html);
+    						$("#carMake").html(html);
+    					},
+    				});
+	    		} 
+	    		fillMakeDropdown();
+	    		function fillModelDropdown()
+	    		{
+	    			$.ajax(
+    				{
+    					url: "assets/car_models.php",
+    					data: { make: $("#carMake").val() },
+    					cache: false,
+    					success: function(html)
+    					{
+    						$("#carModel").html(html);
+    					},
+    				});
+	    		}
+	    		
+	    		$("#carMake").change( function() {
+	    			fillModelDropdown();	
+	    		});  // When user changes the carMake dropdown selection fill the models dropdown
+	    		
+	    	});
+	    	
+	    </script>
 	</body>
 </html>
