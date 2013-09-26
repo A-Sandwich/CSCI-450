@@ -18,7 +18,7 @@ include "assets/db_connect.php";
 		<link href="assets/bootstrap-3/assets/css/signIn.css" rel="stylesheet">
 		
 		<!-- Custom CSS -->
-		<link href="assets/bootstrap-3/assets/css/master.css" rel="stylesheet">
+		<link href="assets/css/master.css" rel="stylesheet">
 		
 		
 		<script src="assets/js/sha512.js"></script>
@@ -32,23 +32,26 @@ include "assets/db_connect.php";
 	</head>
 	
 	<body>
-	<h1 class="signIn">Novus Garage</h1>
-		<div class="container">
-			<form class="form-signin" action="assets/process_login.php" method="post">
-				<input type="text" class="form-control" name="email" id="email" Placeholder="Email Address" autofocus>
-				<input type="password" class="form-control" name="password" Placeholder="Password">
-				<label class="checkbox">
-					<input type="checkbox" value="remember-me" id="chkRememberMe"> Remember Me
-				</label>
-				<button class="btn btn-lg btn-block btn-primary signIn" type="submit" 
-				onclick="formhash(this.form, this.form.password); 
-				if(document.getElementById('chkRememberMe').checked) {
-					setCookie('remember',document.getElementById('email').value,10); 
-				}">
-				Sign In</button>
-			</form>
-		</div>
-  
+	<?php
+		require 'assets/files/navigation.php';
+	?>	
+	<div class="login col-lg-offset-4 col-lg-4">
+		<h1 class="signIn">Novus Garage</h1>
+			
+		<form class="form-signin" action="assets/process_login.php" method="post">
+			<input type="text" class="form-control" name="email" id="email" Placeholder="Email Address" autofocus>
+			<input type="password" class="form-control" name="password" Placeholder="Password">
+			<label class="checkbox">
+				<input type="checkbox" value="remember-me" id="chkRememberMe"> Remember Me
+			</label>
+			<button class="btn btn-lg btn-block btn-primary signIn" type="submit" 
+			onclick="formhash(this.form, this.form.password); 
+			if(document.getElementById('chkRememberMe').checked) {
+				setCookie('remember',document.getElementById('email').value,10); 
+			}">
+			Sign In</button>
+		</form>
+  </div>
   
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

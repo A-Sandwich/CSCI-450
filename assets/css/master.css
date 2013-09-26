@@ -1,12 +1,15 @@
 
 
 button.signIn{
-	background-color: #00AB6F;
+	background-color: black;
+	opacity: 0.75;
 	
 }
 
+
 button.signIn:hover{
-	background-color: #006F48;
+	background-color: black;
+	opacity: 1;
 }
 
 h1.signIn{
@@ -70,4 +73,13 @@ input{
 	display: inline-block;
 	/*float:left;*/
 	
+}
+
+.login{
+	background-image: url("textures/subtle_grunge.png");
+	margin-top: 10px;
+	border-radius: 5px;
+	padding-left: 3%;
+	padding-right: 3%;
+	margin-top: 5%;
 }
