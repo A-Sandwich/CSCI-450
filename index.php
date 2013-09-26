@@ -89,18 +89,9 @@
 	        		</div><!--/row-->
         		</div>
         	</div><!--/span-->
-
-			
-			<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-							<div class="well sidebar-nav">
-								<ul class="nav">
-									<li>Profile Information</li>
-									<li class="active"><a href="signup.php">Register</a></li>
-									<li><a href="login.php">Sign In</a></li>
-									<li><a href="addCar.php">Add a Car</a></li><!--Should only show up if logged in-->
-								</ul>
-							</div><!--/.well -->
-						</div><!--/span-->
+			<?php
+				require 'assets/files/sideBar.php';
+			?>
 		</div><!--/row-->
 
 	
