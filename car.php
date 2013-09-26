@@ -39,7 +39,7 @@
           			<ul class="nav navbar-nav">
 	            		<li class="active"><a href="index.php">Home</a></li>
 			            <li><a href="signup.php">Register</a></li>
-			            <li><a href="login.php">Sign In</a></li>			      
+			            <li><a href="login.php">Sign In</a></li>
          	 		</ul>
         		</div><!-- /.nav-collapse -->
 			</div><!-- /.container -->
@@ -54,51 +54,43 @@
           		</p>
 				<div class="jumbotron">
 	            	<h1>Novus Garage</h1>
-	            	<p>Novus garage is your one stop shop to track repairs, maintenance and mpg!</p>
+	            	<p>Park your car in Novus Garage!</p>
           		</div>
-          		<div class="feed">
-	          		<div class="row">
-		        		<div class=" col-6 col-sm-6 col-lg-4">
-			              	<h3>Oil Change 09/01/13</h3>
-			              	<p>
-								Marty McFly: Wait a minute, Doc. Ah... Are you telling me that you built a time machine... out of a DeLorean?<br >
-								Dr. Emmett Brown: The way I see it, if you're gonna build a time machine into a car, why not do it with some style?
-							</p>
-			              	<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-		            	</div><!--/span-->
-	            		<div class=" col-6 col-sm-6 col-lg-4">
-							<h3>Refuel 08/27/13</h3>
-							<p>You got more talent in one lugnut than a lot of cars has got on their whole body.</p>
-							<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-	            		</div><!--/span-->
-	        			<div class=" col-6 col-sm-6 col-lg-4">
-			              	<h3>Engine Replacement 08/15/13</h3>
-			              	<p>
-								Marty McFly: Wait a minute, Doc. Ah... Are you telling me that you built a time machine... out of a DeLorean?<br >
-								Dr. Emmett Brown: The way I see it, if you're gonna build a time machine into a car, why not do it with some style?
-							</p>
-			              	<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-		            	</div><!--/span-->
-	            		<div class=" col-6 col-sm-6 col-lg-4">
-							<h3>Fuel Efficiency - Refuel 08/01/13</h3>
-							<p>You had a record high mpg for this fill up!</p>
-							<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-	            		</div><!--/span-->
-	            		<div class=" col-6 col-sm-6 col-lg-4">
-			              	<h3>Refuel 06/13/13</h3>
-			              	<p>
-								Marty McFly: Wait a minute, Doc. Ah... Are you telling me that you built a time machine... out of a DeLorean?<br >
-								Dr. Emmett Brown: The way I see it, if you're gonna build a time machine into a car, why not do it with some style?
-							</p>
-			              	<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-		            	</div><!--/span-->
-	            		<div class=" col-6 col-sm-6 col-lg-4">
-							<h3>HERP A DERP</h3>
-							<p>You got more talent in one lugnut than a lot of cars has got on their whole body.</p>
-							<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-	            		</div><!--/span-->
-	        		</div><!--/row-->
-        		</div>
+          		<div class="feed container">
+	          		<form >
+	          			<div class="row">
+		        			<div class=" col-3 col-sm-6 col-lg-6">
+			          			<label for="carName">Car Name:</label><input type="text" id="carName" name="carName"><br>
+			          			<label for="milage">Milage:</label><input type="number" id="milage" name="milage"><br>
+			          			<label for="carMake">Make:</labeL><input type="text" id="carMake" name="carMake"><br>
+			          			<label for="carModel">Model:</label><input type="text" id="carModel" name="carModel"><br>
+			          			<label for="carYear">Year:</label><input type="number" id="carYear" name="carYear"><br>
+			          			<label for="carColor">Color:</label><input type="text" id="carColor" name="carColor"><br>
+			          			<label for="vin">VIN:</label><input type="text" id="vin" name="vin"><br><br>
+	          				</div><!--/-->
+		        			<div class=" col-3 col-sm-6 col-lg-6">
+			          			<h4>Would you like to add information about your last oil change?</h4>
+			          			<input type="radio" name="oilChange" value="1">Yes
+			          			<input type="radio" name="oilChange" value="0">No<br>
+			          			<div class="showHide oilChange">
+			          				<label for="oilChangeDate">Date of last oil change:</label><input type="date" id="oilChangeDate" name="oilChangeDate"><br>
+			          				<label for="oilChangeMilage">Milage during last oil change:</label><input type="number" id="oilChangeMilage" name="oilChangeMilage"><br>
+			          				<label for="oilChangeType">Type of oil used:</label><input type="text" id="oilChangeType" name="oilChangeType"><br>
+			          				<h4>Did you also change your filter?</h4>
+			          				<input type="radio" name="oilFilter" value="1">Yes
+			          				<input type="radio" name="oilFilter" value="0">No<br>
+			          				<div class="showHide oilFilter">
+			          					<label for="oilFilter">Oil filter used:</label><input type="text" id="oilFilter" name="oilFilter"><br>
+			          					<!--This drop down could be removed if we can match an oil filter to their car
+			          						or we could "suggest" a filter that matches and give the user the option
+			          						to change it. -->
+			          				</div>
+			          			</div>
+		          			</div>
+		          		</div>
+	          		</form>
+        		</div><!--/feed-->
+        		<br>	
         	</div><!--/span-->
 
 			
@@ -108,7 +100,7 @@
 									<li>Profile Information</li>
 									<li class="active"><a href="signup.php">Register</a></li>
 									<li><a href="login.php">Sign In</a></li>
-									<li><a href="car.php">Add a Car</a></li><!--Should only show up if logged in-->
+									<li><a href="car.php">Add a Car</a></li>
 								</ul>
 							</div><!--/.well -->
 						</div><!--/span-->
@@ -121,5 +113,6 @@
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	    <script src="assets/bootstrap-3/assets/js/bootstrap.min.js"></script>
 	    <script src="assets/bootstrap-3/assets/js/offcanvas.js"></script>
+	    <script src="assets/js/showHide.js"></script>
 	</body>
 </html>

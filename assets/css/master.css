@@ -40,11 +40,34 @@ body{
 	background-image: url("textures/subtle_grunge.png");
 	margin-top: 10px;
 	border-radius: 5px;
+	padding-left: 3%;
+	padding-right: 3%;
 	/*width: 31.7%;*/
 	/*margin-left: 10px;*/
 }
 
 ul.sidebar-nav li a:hover{
 	background-image: url("textures/subtle_grunge.png");
+	
+}
+input{
+	margin-top: 0.25em;
+	margin-bottom: 0.25em;
+	
+}
+
+label{
+	display: inline-block;
+	/*
+	float: left;
+		clear: left;*/
+	
+	width: 100px;
+	text-align: right;
+}
+
+input{
+	display: inline-block;
+	/*float:left;*/
 	
 }
