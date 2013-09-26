@@ -83,3 +83,11 @@ input{
 	padding-right: 3%;
 	margin-top: 5%;
 }
+
+.signup{
+	text-align: center;
+}
+
+input.signup{
+	margin: 0.25em;
+}
