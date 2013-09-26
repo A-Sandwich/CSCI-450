@@ -1,3 +1,8 @@
+<?php
+	if(isset($_SESSION['user_id'])) {
+		// See if user has at least one car associated with their account
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
