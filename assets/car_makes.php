@@ -11,4 +11,7 @@ echo '<option value="other">Choose make</option>';
 while($get_all_car_makes_query->fetch()) {
 	echo '<option value="' . $make . '">' . $make . '</option>';
 }
+
+echo '<option value="enter_own">Not listed</option>'; // !!!!!!!!!!!!!!!!!!!!!!!!! needs to be implemented yet / check value for enter_own and add text input to the page
+
 ?>

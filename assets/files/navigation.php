@@ -1,5 +1,6 @@
 <?php 
-	require_once "loggedIn.php";
+	include 'assets/logout.php';
+	require_once 'assets/files/loggedIn.php';
 	
 	echo'<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 		<div class="container">
@@ -15,17 +16,18 @@
       			<ul class="nav navbar-nav">
             		<li class="active"><a href="index.php">Home</a></li>
 	';
-	if($loggedIn != true){
-		echo'
-            <li><a href="signup.php">Register</a></li>
-            <li><a href="login.php">Sign In</a></li>
-        ';
-	}else{
+	if($loggedIn == true){
 		echo'
 			<li><a href="addCar.php">Add Car</a></li>
 			<li><a href="#">'.$username.'</a></li>
-			<li><a href="#">Logout</a></li>
+			<li><a href="../../?logout=1">Logout</a></li>
 		';
+
+	} else {
+		echo'
+            <li><a href="signup.php">Register</a></li>
+            <li><a href="login.php">Sign In</a></li>
+        ';	
 	};
 	echo'	            	      
      	 		</ul>
