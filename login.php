@@ -50,6 +50,7 @@ include "assets/db_connect.php";
 				setCookie('remember',document.getElementById('email').value,10); 
 			}">
 			Sign In</button>
+			<?php  if(isset($_GET['fail']) && $_GET['fail'] == 1) { echo '<span style="color:red;"> You already have an account! </span>'; } ?>
 		</form>
   </div>
   
