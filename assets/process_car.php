@@ -19,7 +19,6 @@ if(isset($_POST['carName'], $_POST['mileage'], $_POST['carMake'], $_POST['carMod
 	$check_if_car_exists_query->bind_result($car_id);
 	$check_if_car_exists_query->store_result();
 	if($check_if_car_exists_query->num_rows > 0) {
-		echo 'I made it through that if bro.';
 		$insert_user_car_query = $mysqli->prepare('INSERT INTO users_cars (car_nickname, mileage, vin, car_id, color, user_id) VALUES (?,?,?,?,?,?)');
 		$insert_user_car_query->bind_param('sisisi', $carName, $mileage, $vin, $car_id, $carColor, $_SESSION['user_id']);
 		$insert_user_car_query->execute();

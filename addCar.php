@@ -77,6 +77,7 @@
 		          			</div>
 		          		</div>
 		          		<button type="submit" name="submit" id="savecar">Save Car</button>
+		          		<button type="cancel" name="cancel" id="cancel"><a href="./index.php?addlater=1">Add a car later</a></button>
 	          		</form>
         		</div><!--/feed-->
         		<br>	

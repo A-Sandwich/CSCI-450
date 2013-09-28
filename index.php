@@ -1,6 +1,22 @@
 <?php
-	if(isset($_SESSION['user_id'])) {
+	include 'assets/db_connect.php';
+	require_once 'assets/files/loggedIn.php';
+	
+	if($loggedIn) {
+		$user_id = $_SESSION['user_id'];
 		// See if user has at least one car associated with their account
+		$check_for_first_car_query = $mysqli->prepare("SELECT id from users_cars 
+													   WHERE user_id = '$userid'");
+		$check_for_first_car_query->execute();
+		$check_for_first_car_query->bind_result($car_id);
+		$check_for_first_car_query->store_result();
+		if($check_for_first_car_query->num_rows < 1 && $_GET['addlater'] != 1) { // if the user has less than one car in the garage or cancels add car...
+			header('Location: ./addCar.php');
+		} else {
+			// Nothing should really happen here yet?
+		}
+	} else {
+		// User is not logged in
 	}
 ?>
 <!DOCTYPE html>
