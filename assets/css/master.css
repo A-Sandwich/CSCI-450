@@ -131,3 +131,7 @@ label.25{
 	border-style: solid;
 	border-width: 6px;
 }
+
+.text{
+	text-align: center;
+}

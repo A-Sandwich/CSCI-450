@@ -32,20 +32,42 @@ if(isset($_POST['email'], $_POST['p']))
 		$subject = "Welcome to Novus Garage";
 		$message = "
 		<html>
-			<body style='background-color:#666666; color: #FFFFFF; font-family: sans-serif;'>
-				<div><span style='font-size: 2em;'>Novus Garage</span><br>
-				<span style='font-size:1.3em;'>Welcome to true responsible car ownership</span></div>
-				<p> Hey, <strong><em>".$username."</em></strong>, we just wanted to let you know we appreciate you <br>registering with us and remind you your account details (as if you would forget!)...</p>
-				<div style='background-color: #FFFFFF; color:#333333; width:50%'>
-					<p><strong>Username: </strong>".$username."<br>
-					<strong>email: </strong>".$email."<br>
-					<strong>date of birth: </strong>".$dob." <br>
-					</p>
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="Novus" content="">
+			
+			<!-- Bootstrap core CSS -->
+			<link href="bootstrap-3/assets/css/bootstrap.min.css" rel="stylesheet">
+	
+			<!-- Custom styles for this template -->
+			<link href="bootstrap-3/assets/css/offcanvas.css" rel="stylesheet">
+	
+			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+			<!--[if lt IE 9]>
+			
+			<![endif]-->
+			
+			<link href="css/master.css" rel="stylesheet">
+		</head>
+			<body>
+				<div class='feed col-xs-12 col-sm-offset-3 col-sm-6'>
+					<div class="text">
+						<span style='font-size: 2em;'>Novus Garage</span><br>
+						<span style='font-size:1.3em;'>Welcome to true responsible car ownership</span>
+					</div><br>
+					<p> Hey, <strong><em>".$username."</em></strong>, we just wanted to let you know we appreciate you <br>registering with us and remind you your account details (as if you would forget!)...</p>
+					<div>
+						<p><strong>Username: </strong>".$username."<br>
+						<strong>email: </strong>".$email."<br>
+						<strong>date of birth: </strong>".$dob." <br>
+						</p>
+					</div>
+					<p>Thanks for letting us help you be the most responsible car owner you can be! <br>Now that you Novus, <a href='http://www.novus.site90.com/login.php'>Log into your Novus Garage account!</a></p>
+					
+					<br><br><p>Sincerely, <br><br>
+					Us Novus Geeks</p>
 				</div>
-				<p>Thanks for letting us help you be the most responsible car owner you can be! <br><a style='color:#FFFFFF; font-weight:bold;' href='http://www.novus.site90.com/login.php'>Log into my Novus Garage account</a></p>
-				
-				<br><br><p>Sincerely, <br><br>
-				Us Novus Geeks</p>
 			</body>
 		</html>
 		";
