@@ -33,26 +33,26 @@ if(isset($_POST['email'], $_POST['p']))
 		$message = "
 		<html>
 		<head>
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<meta name="Novus" content="">
+			<meta charset='utf-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+			<meta name='Novus' content=''>
 			
 			<!-- Bootstrap core CSS -->
-			<link href="bootstrap-3/assets/css/bootstrap.min.css" rel="stylesheet">
+			<link href='bootstrap-3/assets/css/bootstrap.min.css' rel='stylesheet'>
 	
 			<!-- Custom styles for this template -->
-			<link href="bootstrap-3/assets/css/offcanvas.css" rel="stylesheet">
+			<link href='bootstrap-3/assets/css/offcanvas.css' rel='stylesheet'>
 	
 			<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 			<!--[if lt IE 9]>
 			
 			<![endif]-->
 			
-			<link href="css/master.css" rel="stylesheet">
+			<link href='css/master.css' rel='stylesheet'>
 		</head>
 			<body>
 				<div class='feed col-xs-12 col-sm-offset-3 col-sm-6'>
-					<div class="text">
+					<div class='text'>
 						<span style='font-size: 2em;'>Novus Garage</span><br>
 						<span style='font-size:1.3em;'>Welcome to true responsible car ownership</span>
 					</div><br>
