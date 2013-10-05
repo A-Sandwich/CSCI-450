@@ -48,7 +48,7 @@
 	<body class="main">
 		<?php
 			require 'assets/files/navigation.php';
-		?>		
+		?>
 
 		<div class="container">
 
@@ -66,40 +66,37 @@
 		        		<div class=" col-6 col-sm-6 col-lg-4">
 			              	<h3>Oil Change 09/01/13</h3>
 			              	<p>
-								Marty McFly: Wait a minute, Doc. Ah... Are you telling me that you built a time machine... out of a DeLorean?<br >
-								Dr. Emmett Brown: The way I see it, if you're gonna build a time machine into a car, why not do it with some style?
+								Changed oil. Cost $20. Miles driven since last oil change: 80,000
 							</p>
 			              	<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 		            	</div><!--/span-->
 	            		<div class=" col-6 col-sm-6 col-lg-4">
 							<h3>Refuel 08/27/13</h3>
-							<p>You got more talent in one lugnut than a lot of cars has got on their whole body.</p>
+							<p>Refuel: Current Miles: 98,000, current mpg 31</p>
 							<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 	            		</div><!--/span-->
 	        			<div class=" col-6 col-sm-6 col-lg-4">
 			              	<h3>Engine Replacement 08/15/13</h3>
 			              	<p>
-								Marty McFly: Wait a minute, Doc. Ah... Are you telling me that you built a time machine... out of a DeLorean?<br >
-								Dr. Emmett Brown: The way I see it, if you're gonna build a time machine into a car, why not do it with some style?
+								Major repair: Total Cost $5,000. Complete overhall of the engine ...
 							</p>
 			              	<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 		            	</div><!--/span-->
 	            		<div class=" col-6 col-sm-6 col-lg-4">
 							<h3>Fuel Efficiency - Refuel 08/01/13</h3>
-							<p>You had a record high mpg for this fill up!</p>
+							<p>Current miles: 97,944, current mpg 27</p>
 							<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 	            		</div><!--/span-->
 	            		<div class=" col-6 col-sm-6 col-lg-4">
 			              	<h3>Refuel 06/13/13</h3>
 			              	<p>
-								Marty McFly: Wait a minute, Doc. Ah... Are you telling me that you built a time machine... out of a DeLorean?<br >
-								Dr. Emmett Brown: The way I see it, if you're gonna build a time machine into a car, why not do it with some style?
+								Current miles: 97,900, current mpg 25
 							</p>
 			              	<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 		            	</div><!--/span-->
 	            		<div class=" col-6 col-sm-6 col-lg-4">
-							<h3>HERP A DERP</h3>
-							<p>You got more talent in one lugnut than a lot of cars has got on their whole body.</p>
+							<h3>Welcome to Novus!</h3>
+							<p>Welcome!</p>
 							<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 	            		</div><!--/span-->
 	        		</div><!--/row-->

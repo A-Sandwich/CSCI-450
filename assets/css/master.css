@@ -90,4 +90,44 @@ input{
 
 input.signup{
 	margin: 0.25em;
+	width: auto;
+	/*display: block;*/
+	background-color: white;
+}
+
+label{
+	display: inline;
+}
+
+label.25{
+	width: 1em;
+}
+
+.signup{
+	display: inline;
+}
+
+.profile{
+	position: absolute;
+	background-image: url("textures/subtle_grunge.png");
+	top: 6em;
+	z-index: -1;
+/*	margin-top: 10px;*/
+	border-radius: 5px;
+/*
+	padding-left: 3%;
+	padding-right: 3%;
+	margin-top: 5%;*/
+}
+
+.profile_feed{
+	position: relative;
+	margin-left: 7em;
+	margin-top: 2em;
+	height: 40em;
+}
+
+.profile_pic{
+	border-style: solid;
+	border-width: 6px;
 }

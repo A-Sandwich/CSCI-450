@@ -19,7 +19,7 @@
 	if($loggedIn == true){
 		echo'
 			<li><a href="addCar.php">Add Car</a></li>
-			<li><a href="#">'.$username.'</a></li>
+			<li><a href="user_profile.php">'.$username.'</a></li>
 			<li><a href="../../?logout=1">Logout</a></li>
 		';
 
