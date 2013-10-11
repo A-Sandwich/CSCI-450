@@ -41,8 +41,9 @@
 	<?php
 		require 'assets/files/navigation.php';
 	?>
-	<div class="col-lg-offset-1 col-lg-2">
-		<img src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">
+	<div class="col-lg-offset-1 col-lg-2" id="picture_wrapper">
+		<div class="change_pic" style="position:absolute; top:50px; padding:15px; z-index:0; opacity:0;">Click here to change your profile picture!<h1>+</h1></div>
+		<img style="z-index:1;" src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">
 	</div>
 	
 	<div class="profile col-lg-offset-2 col-lg-8">
@@ -53,6 +54,19 @@
 			<!-- /Kyle, work your magic here -->
 		</div>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script>
+		$(document).ready( function () {
+			$("#picture_wrapper").mouseenter(function () {
+				$(".profile_pic").fadeTo(400, .1);
+				$(".change_pic").fadeTo(400, 1);
+			});
+			$("#picture_wrapper").mouseleave(function () {
+				$(".profile_pic").fadeTo(400, 1);
+				$(".change_pic").fadeTo(400, 0);
+			});
+		});
+	</script>
 </body>
 <footer>
 	

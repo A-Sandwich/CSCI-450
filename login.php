@@ -32,6 +32,7 @@ include "assets/db_connect.php";
 	</head>
 	
 	<body>
+		
 	<?php
 		require 'assets/files/navigation.php';
 	?>	
