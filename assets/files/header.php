@@ -21,8 +21,10 @@
 		<script src="assets/js/sha512.js"></script>
 		<script src="assets/js/forms.js"></script>
 		<script src="assets/js/init.js"></script>
+		<script src="assets/bootstrap-3/assets/js/bootstrap.min.js"></script>
+	    <script src="assets/bootstrap-3/assets/js/offcanvas.js"></script>
 		
-		<link href="assets/bootstrap-3/assets/css/signIn.css" rel="stylesheet">
+		
 		<link href="assets/css/master.css" rel="stylesheet">
 	'
 ?>

@@ -6,29 +6,10 @@ include "assets/db_connect.php";
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="assets/bootstrap-3/assets/ico/favicon.png">
-		
+		<?php
+			require 'assets/files/header.php';
+		?>	
 		<title>Novus Garage - Sign In</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Bootstrap -->
-		<link href="assets/bootstrap-3/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="assets/bootstrap-3/assets/css/bootstrap.css" rel="stylesheet">
-		<link href="assets/bootstrap-3/assets/css/signIn.css" rel="stylesheet">
-		
-		<!-- Custom CSS -->
-		<link href="assets/css/master.css" rel="stylesheet">
-		
-		
-		<script src="assets/js/sha512.js"></script>
-		<script src="assets/js/forms.js"></script>
-			
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-			<script src="../../assets/js/html5shiv.js"></script>
-			<script src="../../assets/js/respond.min.js"></script>
-		<![endif]-->
 	</head>
 	
 	<body>
