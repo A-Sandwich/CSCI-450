@@ -1,20 +1,20 @@
 <?php
 # User class for Novus Garage
 
-# constructor runs when a new User is created, destructor runs on unset(<User instance name>);
-include '../db_connect.php';
-include '../functions.php';
+include_once '../db_connect.php';
+include_once '../functions.php';
 sec_session_start();
 
 
 class User {
 	
 	private $db; 
+	public $user_data;
 	
 	function __construct($uId=NULL) {
 		$this->db = new mysqli(HOST, USER, PASSWORD, DATABASE);
 		
-		if($uID == NULL){
+		if($uID == NULL) {
 			// General user
 		}
 		else {
