@@ -15,7 +15,7 @@ class User {
 		$this->db = new mysqli(HOST, USER, PASSWORD, DATABASE);
 		
 		if($uID == NULL) {
-			// General user
+			// General user	
 		}
 		else {
 			// Actual user
