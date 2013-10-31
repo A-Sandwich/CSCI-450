@@ -42,7 +42,7 @@
 		require 'assets/files/navigation.php';
 	?>
 	<div class="col-lg-offset-1 col-lg-2" id="picture_wrapper">
-		<div class="change_pic" style="position:absolute; top:50px; padding:15px; z-index:0; opacity:0;">Click here to change your profile picture!<h1>+</h1></div>
+		<div class="change_pic" id="change_pic"style="position:absolute; top:50px; padding:15px; z-index:0; opacity:0;">Click here to change your profile picture!<h1 style="font-size:3em; text-align:center;">+</h1></div>
 		<img style="z-index:1;" src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">
 	</div>
 	
@@ -57,14 +57,25 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	<script>
 		$(document).ready( function () {
+			// The following events are handled by procedures that make a form appear to upload a photo when hovering over profile picture
 			$("#picture_wrapper").mouseenter(function () {
 				$(".profile_pic").fadeTo(400, .1);
 				$(".change_pic").fadeTo(400, 1);
+				$(".change_pic").css("z-index","1");
+				$(".profile_pic").css("z-index","0");
 			});
 			$("#picture_wrapper").mouseleave(function () {
 				$(".profile_pic").fadeTo(400, 1);
 				$(".change_pic").fadeTo(400, 0);
+				$(".change_pic").css("z-index","0");
+				$(".profile_pic").css("z-index","1");
+				$(".change_pic").html("Click here to change your profile picture!<h1 style='font-size:3em; text-align:center;'>+</h1>");
 			});
+			$(".change_pic").click( function () {
+				$(".change_pic").html("<form action='assets/upload_profile_pic.php' method='post' enctype='multipart/form-data'> <input type='file' name='ppfile' id='ppfile'> <input type='submit' name='submit' value='Submit'></form>");
+			}); // End profile picture hover events
+			
+			// more jquery stuff
 		});
 	</script>
 </body>
