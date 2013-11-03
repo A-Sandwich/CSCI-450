@@ -1,5 +1,4 @@
 <?php
-require_once 'files/loggedIn.php';
 
 if(isset($_GET['logout'])) {
 	$_SESSION = array();
