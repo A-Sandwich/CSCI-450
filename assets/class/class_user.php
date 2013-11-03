@@ -1,8 +1,8 @@
 <?php
 # User class for Novus Garage
 
-include_once '../db_connect.php';
-include_once '../functions.php';
+include_once __DIR__.'/../db_connect.php';
+include_once __DIR__.'/../functions.php';
 sec_session_start();
 
 

@@ -135,3 +135,10 @@ label.25{
 .text{
 	text-align: center;
 }
+
+.garage{
+	background-image: url("textures/grey_wash_wall.png");
+	margin-left: 1%;
+	margin-right: 2%;
+	border-radius: 25px;
+}

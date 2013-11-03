@@ -34,7 +34,10 @@
 		<div class="profile_feed col-lg-offset-1 col-lg-11">
 			<h2><?PHP echo''.$username.''?></h2>
 			<!-- Kyle, work your magic here --> 
-				<p> I'm a lonely blank page with no contents to call my own </p> 
+			<div class="jumbotron garage">
+				<span class="glyphicon glyphicon-car"></span>
+				<p> I'm a lonely blank page with no contents to call my own </p>
+			</div> 
 			<!-- /Kyle, work your magic here -->
 		</div>
 	</div>
@@ -60,6 +63,13 @@
 			
 			// more jquery stuff
 		});
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+			
+		})		
 	</script>
 </body>
 <footer>
