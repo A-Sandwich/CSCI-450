@@ -1,57 +1,31 @@
 <?php
 	# Car class for Novus Garage
 	
-	class Car {
-		private $nickname;
-		private $make;
-		private $model;
-		private $year;
-		private $vin;
-		private $engine;
-		private $mileage;
+class Car extends Entity {
+	// Gets db and data from Entity
+	
+	public $cars;
+	
+	function __construct($carId=NULL) {
+		$this->db = new mysqli(HOST, USER, PASSWORD, DATABASE);
 		
-		public function getNickname() {
-			return $this->nickname;
+		if($carID == NULL) {
+			// General user	
 		}
-		public function setNickname($value) {
-			$this->nickname = $value;
-		}
-		public function getMake() {
-			return $this->make;
-		}
-		public function setMake($value) {
-			$this->make = $value;
-		}
-		public function getModel() {
-			return $this->model;
-		}
-		public function setModel($value) {
-			$this->model = $value;
-		}
-		public function getYear() {
-			return $this->year;
-		}
-		public function setYear($value) {
-			$this->year = $value;
-		}
-		public function getVin() {
-			return $this->vin;
-		}
-		public function setVin($value) {
-			$this->vin = $value;
-		}
-		public function getEngine() {
-			return $this->engine;
-		}
-		public function setEngine($value) {
-			$this->engine = $value;
-		}
-		public function getMileage() {
-			return $this->mileage;
-		}
-		public function setMileage($value) {
-			$this->mileage = $value;
+		else {
+			// Actual user
+		}	
+	}
+	
+	function getUserCars($uId) {
+		// Take user id and query database for their cars, return an array in data
+		$get_user_cars_query = $this->db->prepare("SELECT car_id, make, model FROM users_cars
+												   WHERE user_id = '$uID'");
+		$result = $get_user_cars_query->execute();
+		while($row = $result->fetch_assoc()){
+			$cars[] = $row;
 		}
 	}
+}
 	
 ?>

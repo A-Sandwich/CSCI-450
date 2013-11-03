@@ -6,10 +6,9 @@ include_once __DIR__.'/../functions.php';
 sec_session_start();
 
 
-class User {
+class User extends Entity {
 	
-	private $db; 
-	public $user_data;
+	// Gets db and data from Entity
 	
 	function __construct($uId=NULL) {
 		$this->db = new mysqli(HOST, USER, PASSWORD, DATABASE);
