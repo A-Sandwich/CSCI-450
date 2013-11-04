@@ -2,6 +2,7 @@
 	include 'assets/logout.php';
 	include 'assets/db_connect.php';
 	require_once 'assets/files/loggedIn.php';
+	require_once 'assets/class/class_user.php';
 	
 	if($loggedIn) { // The user is logged in
 		// get some useful information about the user from the session array
@@ -25,6 +26,10 @@
 	<?php
 		require 'assets/files/navigation.php';
 	?>
+	<?php 
+		$profileUser = new User();
+		$profileUser->fillOutProfile();
+	?>
 	<div class="col-lg-offset-1 col-lg-2" id="picture_wrapper">
 		<div class="change_pic" id="change_pic"style="position:absolute; top:50px; padding:15px; z-index:0; opacity:0;">Click here to change your profile picture!<h1 style="font-size:3em; text-align:center;">+</h1></div>
 		<img style="z-index:1;" src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">
@@ -36,7 +41,7 @@
 			<!-- Kyle, work your magic here --> 
 			<div class="jumbotron garage">
 				<span class="glyphicon glyphicon-car"></span>
-				<p> I'm a lonely blank page with no contents to call my own </p>
+				<?php echo $profileUser->cars . ' blah blah '; ?>
 			</div> 
 			<!-- /Kyle, work your magic here -->
 		</div>

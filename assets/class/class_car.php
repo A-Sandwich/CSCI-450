@@ -1,5 +1,7 @@
 <?php
 	# Car class for Novus Garage
+	include_once 'class_entity.php';
+	include_once __DIR__.'/../db_connect.php';
 	
 class Car extends Entity {
 	// Gets db and data from Entity
@@ -10,10 +12,10 @@ class Car extends Entity {
 		$this->db = new mysqli(HOST, USER, PASSWORD, DATABASE);
 		
 		if($carID == NULL) {
-			// General user	
+			// General car	
 		}
 		else {
-			// Actual user
+			// Actual car
 		}	
 	}
 	
@@ -21,10 +23,11 @@ class Car extends Entity {
 		// Take user id and query database for their cars, return an array in data
 		$get_user_cars_query = $this->db->prepare("SELECT car_id, make, model FROM users_cars
 												   WHERE user_id = '$uID'");
-		$result = $get_user_cars_query->execute();
-		while($row = $result->fetch_assoc()){
+		$get_user_cars_query->execute();
+		while($row = $get_user_cars_query->fetch()){
 			$cars[] = $row;
 		}
+		return $cars;
 	}
 }
 	
