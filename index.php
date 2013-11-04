@@ -1,31 +1,10 @@
 <?php
-	include 'assets/db_connect.php';
+	include_once "assets/files/common.php";
+	include __DIR__.'/assets/files/db_connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="Novus" content="">
-		<link rel="shortcut icon" href="assets/bootstrap-3/assets/ico/favicon.png">
-
-		<title>Novus Garage</title>
-
-		<!-- Bootstrap core CSS -->
-		<link href="assets/bootstrap-3/assets/css/bootstrap.min.css" rel="stylesheet">
-
-		<!-- Custom styles for this template -->
-		<link href="assets/bootstrap-3/assets/css/offcanvas.css" rel="stylesheet">
-
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-			<script src="bootstrap-3/assets/js/html5shiv.js"></script>
-			<script src="bootstrap-3/assets/js/respond.min.js"></script>
-		<![endif]-->
-		
-		<link href="assets/css/master.css" rel="stylesheet">
-		
-	</head>
+	<?php include 'assets/files/header.php';?>
 	
 	<body class="main">
 		<?php

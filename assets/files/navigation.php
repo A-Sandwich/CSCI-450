@@ -1,5 +1,4 @@
 <?php 
-	require_once "common.php";
 	include 'assets/logout.php';
 	
 	echo'<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">

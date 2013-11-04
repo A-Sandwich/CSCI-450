@@ -1,6 +1,4 @@
 <?PHP
-	include_once __DIR__.'/../functions.php';
-	sec_session_start();
 
 	echo'
 		<meta charset="utf-8">

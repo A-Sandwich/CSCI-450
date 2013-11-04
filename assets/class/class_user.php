@@ -21,8 +21,6 @@ class User extends Entity {
 	function isLoggedIn() {
 		$loggedIn = false;
 		if(isset($_SESSION['user_id'])){
-			$userid = $_SESSION['user_id'];
-			$username = $_SESSION['username'];
 			$loggedIn = true;
 		};
 		return $loggedIn;
