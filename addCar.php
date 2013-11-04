@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<?php
-			require 'assets/files/header.php';
+			require_once 'assets/files/header.php';
 		?>	
 
 		<title>Novus Garage - Add Car</title>		

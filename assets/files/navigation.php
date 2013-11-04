@@ -1,6 +1,6 @@
 <?php 
+	require_once "common.php";
 	include 'assets/logout.php';
-	__DIR__.'/../class/class_user.php';
 	
 	echo'<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 		<div class="nav container">

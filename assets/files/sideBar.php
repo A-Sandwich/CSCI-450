@@ -1,5 +1,5 @@
 <?php
-	require_once "loggedIn.php";
+	require_once "common.php";
 	
 	echo'
 		<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
