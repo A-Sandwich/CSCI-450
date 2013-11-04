@@ -1,5 +1,4 @@
 <?php 
-	include 'assets/logout.php';
 	
 	echo'<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 		<div class="nav container">

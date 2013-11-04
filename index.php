@@ -4,7 +4,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-	<?php include 'assets/files/header.php';?>
+	<head><?php include 'assets/files/header.php';?></head>
 	
 	<body class="main">
 		<?php

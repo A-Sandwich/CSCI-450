@@ -1,13 +1,14 @@
+<?php
+	require_once "assets/files/common.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<?php
-			require_once 'assets/files/header.php';
-		?>	
-
-		<title>Novus Garage - Add Car</title>		
-	</head>
 	
+	<head><?php require_once 'assets/files/header.php'; ?></head>
+
+	<title>Novus Garage - Add Car</title>		
+
 	<body class="main">
 		<?php
 			require 'assets/files/navigation.php';
@@ -21,7 +22,7 @@
           		</p>
 				<div class="jumbotron">
 	            	<h1>Novus Garage</h1>
-	            	<p>Park your car in Novus Garage!</p>
+	            	<p>Park your car in Novus Garage! user </p>
           		</div>
           		<div class="feed container">
 	          		<form name="addCarForm" id="addCarForm" action="assets/process_car.php" method="post">
