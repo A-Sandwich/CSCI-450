@@ -31,8 +31,7 @@
 		$profileUser->fillOutProfile();
 	?>
 	<div class="col-lg-offset-1 col-lg-2" id="picture_wrapper">
-		<div class="change_pic" id="change_pic"style="position:absolute; top:50px; padding:15px; z-index:0; opacity:0;">Click here to change your profile picture!<h1 style="font-size:3em; text-align:center;">+</h1></div>
-		<img style="z-index:1;" src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">
+		<img src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">
 	</div>
 	
 	<div class="profile col-lg-offset-2 col-lg-8">

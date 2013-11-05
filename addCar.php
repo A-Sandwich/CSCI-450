@@ -25,7 +25,7 @@
 	            	<p>Park your car in Novus Garage!</p>
           		</div>
           		<div class="feed container">
-	          		<form name="addCarForm" id="addCarForm" class="form-horizontal" action="assets/process_car.php" method="post">
+	          		<form name="addCarForm" id="addCarForm" class="form-horizontal" action="assets/process_car.php" method="post" style="padding:20px;">
 	          			<div class="row">
 		        			<div class=" col-3 col-sm-6 col-lg-6">
 		        				<div class="input-group input-group-sm">
