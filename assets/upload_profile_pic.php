@@ -1,7 +1,4 @@
 <?php
-	include "assets/files/loggedIn.php";
-	
-
 	if ($_FILES["file"]["error"] > 0) {
 		echo "Error: " . $_FILES["ppfile"]["error"] . "<br>";
 	}

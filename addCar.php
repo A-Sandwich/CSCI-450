@@ -22,24 +22,26 @@
           		</p>
 				<div class="jumbotron">
 	            	<h1>Novus Garage</h1>
-	            	<p>Park your car in Novus Garage! user <?php echo $_SESSION['user_id']; ?></p>
+	            	<p>Park your car in Novus Garage!</p>
           		</div>
           		<div class="feed container">
 	          		<form name="addCarForm" id="addCarForm" action="assets/process_car.php" method="post">
 	          			<div class="row">
 		        			<div class=" col-3 col-sm-6 col-lg-6">
-			          			<label for="carName">Give your car a nickname:</label><input type="text" id="carName" name="carName"><br>
-			          			<label for="mileage">Mileage:</label><input type="number" id="mileage" name="mileage"><br>
-			          			<label for="carMake">Make:</labeL><select name="carMake" id="carMake">
-			          				<option val="other">other</option>
-			          			</select><br><!--dropdown-->
-			          			<label for="carModel">Model:</labeL><select name="carModel" id="carModel">
-			          				<option val="other">other</option>
-			          			</select><br><!--dropDown-->
-			          			<label for="carYear">Year:</label><input type="number" id="carYear" name="carYear"><br>
-			          			<label for="carColor">Color:</label><input type="text" id="carColor" name="carColor"><br>
-			          			<label for="vin">VIN:</label><input type="text" id="vin" name="vin"><br><br>
-			          			<label for="engineType">Engine Type:</label><input type="text" id="engineType" name="engineType"> Liter Engine<br><br>
+		        				<div class="input-group">
+				          			<input type="text" id="carName" class="form-control" name="carName" placeholder="Nickname"><br>
+				          			<input type="number" id="mileage" class="form-control" name="mileage" placeholder="Mileage"><br>
+				          			<select name="carMake" id="carMake" class="form-control" >
+				          				<option val="other">Make</option>
+				          			</select><br><!--dropdown-->
+				          			<select name="carModel" id="carModel" class="form-control" >
+				          				<option val="other">Model</option>
+				          			</select><br><!--dropDown-->
+				          			<input type="number" id="carYear"  class="form-control" name="carYear" placeholder="Year"><br>
+				          			<input type="text" id="carColor" class="form-control"  name="carColor" placeholder="Paint color"><br>
+				          			<input type="text" id="vin"  class="form-control" name="vin" placeholder="VIN Number"><br><br>
+				          			<input type="text" id="engineType" class="form-control"  name="engineType" placeholder="0.0"> Liter Engine<br><br>
+			          			</div>
 	          				</div><!--/-->
 		        			<div class=" col-3 col-sm-6 col-lg-6">
 			          			<h4>Would you like to add information about your last oil change?</h4>

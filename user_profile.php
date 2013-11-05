@@ -43,9 +43,10 @@
 				<span class="glyphicon glyphicon-car"></span>
 				<?php
 					foreach ($profileUser->cars as $car) {
+						echo '<img src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" /> ';
 						foreach($car as $spec) {
-							echo $spec.' ';
-						} echo '<img src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" />';
+							echo ' ' . $spec.' ';
+						} 
 					}
 				?>
 			</div> 
@@ -54,23 +55,6 @@
 	</div>
 	<script>
 		$(document).ready( function () {
-			// The following events are handled by procedures that make a form appear to upload a photo when hovering over profile picture
-			$("#picture_wrapper").mouseenter(function () {
-				$(".profile_pic").fadeTo(400, .1);
-				$(".change_pic").fadeTo(400, 1);
-				$(".change_pic").css("z-index","1");
-				$(".profile_pic").css("z-index","0");
-			});
-			$("#picture_wrapper").mouseleave(function () {
-				$(".profile_pic").fadeTo(400, 1);
-				$(".change_pic").fadeTo(400, 0);
-				$(".change_pic").css("z-index","0");
-				$(".profile_pic").css("z-index","1");
-				$(".change_pic").html("Click here to change your profile picture!<h1 style='font-size:3em; text-align:center;'>+</h1>");
-			});
-			$(".change_pic").click( function () {
-				$(".change_pic").html("<form action='assets/upload_profile_pic.php' method='post' enctype='multipart/form-data'> <input type='file' name='ppfile' id='ppfile'> <input type='submit' name='submit' value='Submit'></form>");
-			}); // End profile picture hover events
 			
 			// more jquery stuff
 		});
