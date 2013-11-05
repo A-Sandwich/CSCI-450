@@ -31,9 +31,9 @@
 		$profileUser->fillOutProfile();
 	?>
 	<div class="col-lg-offset-1 col-lg-2" id="picture_wrapper">
-		<div id="profile_pic">
+		<div id="profile_pic" class="thumbnail">
 			<!--<img src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">-->
-			<img src="<?php echo 'assets/' . $profileUser->pic_path; ?>" alt="Smiley face" class="profile_pic">
+			<img data-src="holder.js/200x261" src="<?php echo 'assets/' . $profileUser->pic_path; ?>" alt="Smiley face" class="profile_pic">
 		</div>
 	</div>
 	

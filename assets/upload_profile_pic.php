@@ -19,7 +19,7 @@
 			$insert_filepath_to_user_pic_query = $mysqli->prepare("UPDATE users SET prof_pic_path= ? WHERE id = ?");
 			$insert_filepath_to_user_pic_query->bind_param('si', $pic_filepath , $_SESSION['user_id']);
 			$insert_filepath_to_user_pic_query->execute();
-			header('Location: ../index.php');
+			header('Location: ../user_profile.php');
 		}
 	}
 ?>
