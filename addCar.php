@@ -25,22 +25,46 @@
 	            	<p>Park your car in Novus Garage!</p>
           		</div>
           		<div class="feed container">
-	          		<form name="addCarForm" id="addCarForm" action="assets/process_car.php" method="post">
+	          		<form name="addCarForm" id="addCarForm" class="form-horizontal" action="assets/process_car.php" method="post">
 	          			<div class="row">
 		        			<div class=" col-3 col-sm-6 col-lg-6">
-		        				<div class="input-group">
-				          			<input type="text" id="carName" class="form-control" name="carName" placeholder="Nickname"><br>
-				          			<input type="number" id="mileage" class="form-control" name="mileage" placeholder="Mileage"><br>
-				          			<select name="carMake" id="carMake" class="form-control" >
-				          				<option val="other">Make</option>
-				          			</select><br><!--dropdown-->
-				          			<select name="carModel" id="carModel" class="form-control" >
-				          				<option val="other">Model</option>
-				          			</select><br><!--dropDown-->
-				          			<input type="number" id="carYear"  class="form-control" name="carYear" placeholder="Year"><br>
-				          			<input type="text" id="carColor" class="form-control"  name="carColor" placeholder="Paint color"><br>
-				          			<input type="text" id="vin"  class="form-control" name="vin" placeholder="VIN Number"><br><br>
-				          			<input type="text" id="engineType" class="form-control"  name="engineType" placeholder="0.0"> Liter Engine<br><br>
+		        				<div class="input-group input-group-sm">
+				          			<label for="carName" class="col-sm-3 control-label">Nickname</label>
+				          			<div class="col-sm-9">
+				          				<input type="text" id="carName" class="form-control" name="carName" placeholder="Nickname"><br>
+				          			</div>
+				          			<label for="mileage" class="col-sm-3 control-label">Mileage</label>
+				          			<div class="col-sm-9">
+				          				<input type="number" id="mileage" class="form-control" name="mileage" placeholder="Mileage"><br>
+				          			</div>
+				          			<label for="carMake" class="col-sm-3 control-label">Make</label>
+				          			<div class="col-sm-9">
+				          				<select name="carMake" id="carMake" class="form-control" >
+				          					<option val="other">Make</option>
+				          				</select><br><!--dropdown-->
+				          			</div>
+				          			<label for="carModel" class="col-sm-3 control-label">Model</label>
+				          			<div class="col-sm-9">
+				          				<select name="carModel" id="carModel" class="form-control" >
+				          					<option val="other">Model</option>
+				          				</select><br><!--dropDown-->
+				          			</div>
+				          			<label for="carYear" class="col-sm-3 control-label">Year</label>
+				          			<div class="col-sm-9">
+				          				<input type="number" id="carYear"  class="form-control" name="carYear" placeholder="Year"><br>
+				          			</div>
+				          			<label for="carColor" class="col-sm-3 control-label">Color</label>
+				          			<div class="col-sm-9">
+				          				<input type="text" id="carColor" class="form-control"  name="carColor" placeholder="Paint color"><br>
+				          			</div>
+				          			<label for="vin" class="col-sm-3 control-label">VIN</label>
+				          			<div class="col-sm-9">
+				          				<input type="text" id="vin"  class="form-control" name="vin" placeholder="VIN Number"><br><br>
+				          			</div>
+				          			<label for="engineType" class="col-sm-3 control-label">Engine</label>
+				          			<div class="col-sm-9">
+				          				<input type="text" id="engineType" class="form-control"  name="engineType" placeholder="0.0"> Liter Engine<br><br>
+				          			</div>
 			          			</div>
 	          				</div><!--/-->
 		        			<div class=" col-3 col-sm-6 col-lg-6">

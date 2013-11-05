@@ -43,7 +43,7 @@
 				<span class="glyphicon glyphicon-car"></span>
 				<?php
 					foreach ($profileUser->cars as $car) {
-						echo '<img src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" /> ';
+						echo '<img src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
 						foreach($car as $spec) {
 							echo ' ' . $spec.' ';
 						} 
