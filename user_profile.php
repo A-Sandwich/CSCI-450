@@ -31,12 +31,23 @@
 		$profileUser->fillOutProfile();
 	?>
 	<div class="col-lg-offset-1 col-lg-2" id="picture_wrapper">
-		<img src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">
+		<div id="profile_pic">
+			<!--<img src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">-->
+			<img src="<?php echo 'assets/' . $profileUser->pic_path; ?>" alt="Smiley face" class="profile_pic">
+		</div>
 	</div>
 	
 	<div class="profile col-lg-offset-2 col-lg-8">
 		<div class="profile_feed col-lg-offset-1 col-lg-11">
-			<h2><?PHP echo''.$username.''?></h2>
+			<h2><?PHP echo''.$username.''?>
+				<div class="dropdown" style="display: inline; font-size:0.8em;">
+				  <a data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-cog"></i></a>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				    <li class="dropdown"><a href="#" onclick="javascript:showChangePicForm()">Change profile picture..</a></li>
+				  </ul>
+				</div>
+			</h2> 
+			
 			<!-- Kyle, work your magic here --> 
 			<div class="jumbotron garage">
 				<span class="glyphicon glyphicon-car"></span>
@@ -60,8 +71,10 @@
 	</script>
 	
 	<script type="text/javascript">
+		function showChangePicForm() {
+				$("#profile_pic").html("<form action='assets/upload_profile_pic.php' method='post' enctype='multipart/form-data'> <input type='file' name='ppfile' id='ppfile'> <input type='submit' name='submit' value='Submit'></form>");
+		}
 		$(document).ready(function(){
-		
 			
 		})		
 	</script>

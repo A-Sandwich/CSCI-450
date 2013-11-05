@@ -8,6 +8,7 @@ class User extends Entity {
 	
 	// Gets db and data from Entity
 	public $cars;
+	public $pic_path;
 	
 	function __construct($uId=NULL) {
 		$this->db = new mysqli(HOST, USER, PASSWORD, DATABASE);
@@ -30,6 +31,15 @@ class User extends Entity {
 	
 	function fillOutProfile() {
 		// set the different things that should show up on the profile page
+		/*Get profile pic*/
+		$user_id = $_SESSION['user_id'];
+		$get_profile_pic_path_query = $this->db->prepare("SELECT prof_pic_path FROM users WHERE id = '$user_id'");
+		$get_profile_pic_path_query->execute();
+		$get_profile_pic_path_query->bind_result($this->pic_path);
+		$get_profile_pic_path_query->store_result();
+		$get_profile_pic_path_query->fetch();
+		$get_profile_pic_path_query->close();
+		
 		/*show users cars*/
 		$general_car = new Car();
 		$this->cars = $general_car->getUserCars($_SESSION['user_id']);
