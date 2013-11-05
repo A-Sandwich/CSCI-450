@@ -20,7 +20,7 @@ include "assets/db_connect.php";
 	<div class="login col-lg-offset-4 col-lg-4">
 		<h1 class="signIn">Novus Garage</h1>
 			
-		<form class="form-signin" action="assets/process_login.php" method="post">
+		<form class="form-signin" action="assets/process_login.php" method="post" style="padding:20px;">
 			<input type="text" class="form-control" name="email" id="email" Placeholder="Email Address" autofocus>
 			<input type="password" class="form-control" name="password" Placeholder="Password">
 			<label class="checkbox">
