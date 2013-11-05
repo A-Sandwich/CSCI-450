@@ -22,7 +22,7 @@
           		</p>
 				<div class="jumbotron">
 	            	<h1>Novus Garage</h1>
-	            	<p>Park your car in Novus Garage! user </p>
+	            	<p>Park your car in Novus Garage! user <?php echo $_SESSION['user_id']; ?></p>
           		</div>
           		<div class="feed container">
 	          		<form name="addCarForm" id="addCarForm" action="assets/process_car.php" method="post">

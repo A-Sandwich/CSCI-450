@@ -41,7 +41,13 @@
 			<!-- Kyle, work your magic here --> 
 			<div class="jumbotron garage">
 				<span class="glyphicon glyphicon-car"></span>
-				<?php echo $profileUser->cars . ' blah blah '; ?>
+				<?php
+					foreach ($profileUser->cars as $car) {
+						foreach($car as $spec) {
+							echo $spec.' ';
+						} echo '<img src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" />';
+					}
+				?>
 			</div> 
 			<!-- /Kyle, work your magic here -->
 		</div>
