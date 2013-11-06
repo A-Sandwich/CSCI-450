@@ -18,7 +18,7 @@
   				<p class="pull-right visible-xs">
             		<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           		</p>
-				<div class="jumbotron">
+				<div class="jumbotron" id="index_jtron">
 	            	<h1>Novus Garage</h1>
 	            	<p>Novus garage is your one stop shop to track repairs, maintenance and mpg!</p>
           		</div>

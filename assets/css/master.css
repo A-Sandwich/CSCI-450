@@ -28,7 +28,14 @@ body{
 
 .jumbotron{
 	/*background-color: white;*/
-	background-image: url("textures/subtle_grunge.png");
+	/*background-image: url("textures/subtle_grunge.png");*/
+}
+
+#index_jtron {
+	background: url("../images/background_large/1351165_26943001.jpg");
+	background-size:cover;	
+	color: #000;
+	text-shadow: 0px 0px 15px #FFF;
 }
 
 .sidebar-nav{
