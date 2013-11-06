@@ -21,10 +21,11 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script src="assets/js/sha512.js"></script>
 		<script src="assets/js/forms.js"></script>
+		
 		<script src="assets/js/init.js"></script>
+		
 		<script src="assets/bootstrap-3/assets/js/bootstrap.min.js"></script>
 	    <script src="assets/bootstrap-3/assets/js/offcanvas.js"></script>
-		
 		
 		<link href="assets/css/master.css" rel="stylesheet">
 	'
