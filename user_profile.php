@@ -48,9 +48,7 @@
 				</div>
 			</h2> 
 			
-			<!-- Kyle, work your magic here --> 
-			<div class="jumbotron garage">
-				<span class="glyphicon glyphicon-car"></span>
+			<div class="jumbotron garage" style="overflow-x:auto;"><!--User's Garage-->
 				<?php
 					foreach ($profileUser->cars as $car) {
 						echo '<img src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
@@ -60,7 +58,6 @@
 					}
 				?>
 			</div> 
-			<!-- /Kyle, work your magic here -->
 		</div>
 	</div>
 	<script>
