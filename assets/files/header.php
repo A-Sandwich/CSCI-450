@@ -26,6 +26,7 @@
 		
 		<script src="assets/bootstrap-3/assets/js/bootstrap.min.js"></script>
 	    <script src="assets/bootstrap-3/assets/js/offcanvas.js"></script>
+	    <script src="/assets/js/jOdometer-master/jquery.jodometer.min.js" type="text/javascript"></script>
 		
 		<link href="assets/css/master.css" rel="stylesheet">
 	'

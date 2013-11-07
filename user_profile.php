@@ -30,7 +30,7 @@
 		$profileUser = new User();
 		$profileUser->fillOutProfile();
 	?>
-	<div class="col-lg-offset-1 col-lg-2" id="picture_wrapper">
+	<div class="col-lg-offset-1 col-lg-2 col-xs-2 col-md-2" id="picture_wrapper">
 		<div id="profile_pic" class="thumbnail">
 			<!--<img src="/assets/images/profile_pic.jpg" alt="Smiley face" class="profile_pic">-->
 			<img data-src="holder.js/200x261" src="<?php echo 'assets/' . $profileUser->pic_path; ?>" alt="Smiley face" class="profile_pic">
@@ -58,12 +58,29 @@
 					}
 				?>
 			</div> 
+			<div class="col-lg-4">
+				<h3><?php echo''.$profileUser->cars[0][2].''?></h3>
+				<div class="counter7-container">
+			        <div class="counter7"></div>
+			    </div>
+		    </div>
+		    <div class="col-lg-offset-2 col-lg-4">
+		    	<h3>Fuel Economy:</h3>
+		    </div>
 		</div>
 	</div>
 	<script>
 		$(document).ready( function () {
-			
-			// more jquery stuff
+            $('.counter7').jOdometer({
+                counterStart:'8901', 
+                numbersImage: 'assets/images/jodometer-numbers-24pt.png', 
+                widthNumber: 32,
+                heightNumber: 54,
+                spaceNumbers: 0, 
+                offsetRight:-10,
+                maxDigits: 10,
+            });
+
 		});
 	</script>
 	
