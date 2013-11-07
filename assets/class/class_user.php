@@ -43,6 +43,7 @@ class User extends Entity {
 		/*show users cars*/
 		$general_car = new Car();
 		$this->cars = $general_car->getUserCars($_SESSION['user_id']);
+		
 	}
 }
 
