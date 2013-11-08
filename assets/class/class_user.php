@@ -43,8 +43,15 @@ class User extends Entity {
 		/*show users cars*/
 		$general_car = new Car();
 		$this->cars = $general_car->getUserCars($_SESSION['user_id']);
-		
+		}
+	
+	function add_got_fuel($got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid) {
+		$add_fuel_purchase_query = $this->db->prepare('INSERT INTO fuel_purchases (date, current_mileage, ppg, cost, user_id) VALUES (?,?,?,?,?)');
+		$add_fuel_purchase_query->bind_param('siddi',$got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid);
+		$add_fuel_purchase_query->execute();
+		$add_fuel_purchase_query->close();
 	}
+	
 }
 
 ?>

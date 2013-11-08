@@ -61,9 +61,28 @@
 				<div class="counter7-container">
 			        <div class="counter7"></div>
 			    </div>
+			    <div>
+			    	<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php">
+			    		<h4>Got repair</h4>
+			    		<input type="date" class="form-control" name="got_repair_date" />
+			    		<input type="text" class="form-control" name="got repair_details" placeholder="details.. details.. details.." />
+			    		<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
+			    		<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />
+			    	</form>
+			    </div>
 		    </div>
 		    <div class="col-lg-offset-2 col-lg-4">
 		    	<h3>Fuel Economy:</h3>
+		    	<div>
+		    		<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php">
+		    			<h4>Got fuel</h4>
+		    			<input type="date" class="form-control" name="got_fuel_date"/>
+		    			<input type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
+		    			<input type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
+		    			<input type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
+		    			<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
+		    		</form>
+		    	</div>
 		    </div>
 		</div>
 	</div>
