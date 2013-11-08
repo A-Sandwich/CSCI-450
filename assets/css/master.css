@@ -177,3 +177,7 @@ label.25{
             background-repeat: repeat-x;
             width: 288px;
         }
+        
+.cover{
+	background-size: cover;
+}
