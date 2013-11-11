@@ -50,14 +50,16 @@
 			
 			<div class="jumbotron garage" style="overflow-x:auto;"><!--User's Garage-->
 				<?php
+					$active = 'car-active';
 					foreach ($profileUser->cars as $car) {
-						echo '<img src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
-						echo $car[0] . ' ' . $car[1];
+						echo '<span class="'.$active.' car"><img class="'.$active.' car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
+						echo $car[0] . ' ' . $car[1].'</span>';
+						$active = '';
 					}
 				?>
 			</div> 
 			<div class="col-lg-4">
-				<h3><?php echo''.$profileUser->cars[0][2].''?></h3>
+				<h3><?php echo''.$profileUser->cars[0][2].' odometer:'?></h3>
 				<div class="counter7-container">
 			        <div class="counter7"></div>
 			    </div>
@@ -86,27 +88,35 @@
 		    </div>
 		</div>
 	</div>
-	<script>
-		$(document).ready( function () {
-            $('.counter7').jOdometer({
-                counterStart:'8901', 
-                numbersImage: 'assets/images/jodometer-numbers-24pt.png', 
-                widthNumber: 32,
-                heightNumber: 54,
-                spaceNumbers: 0, 
-                offsetRight:-10,
-                maxDigits: 10,
-            });
-
-		});
-	</script>
-	
+	<?php
+		echo"
+			<script>
+				$(document).ready( function () {
+		            $('.counter7').jOdometer({
+		                counterStart:'".$profileUser->cars[0][3]."', 
+		                counterEnd: '".$profileUser->cars[0][3]."',
+		                numbersImage: 'assets/images/jodometer-numbers-24pt.png', 
+		                widthNumber: 32,
+		                heightNumber: 54,
+		                spaceNumbers: 0, 
+		                offsetRight:-10,
+		                maxDigits: 10,
+		                speed: 0
+		            });
+		
+				});
+			</script>
+		"
+	?>
 	<script type="text/javascript">
 		function showChangePicForm() {
 				$("#profile_pic").html("<form action='assets/upload_profile_pic.php' method='post' enctype='multipart/form-data'> <input type='file' name='ppfile' id='ppfile'> <input type='submit' name='submit' value='Submit'></form>");
 		}
 		$(document).ready(function(){
-			
+			$('.car').click(function(){
+				$('.car-active').removeClass('car-active');
+				$(this).addClass('car-active');
+			});
 		})		
 	</script>
 </body>
