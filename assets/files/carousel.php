@@ -5,7 +5,7 @@
 	}else{
 		//echo''.$con.'';
 	};
-	$query = sprintf('SELECT * FROM carousel');
+	$query = sprintf('SELECT * FROM carousel WHERE spreadNum = (SELECT MAX(spreadNum) FROM carousel)');
 	$qryResult = mysqli_query($con, $query);
 	
 	if (! $qryResult){ 
