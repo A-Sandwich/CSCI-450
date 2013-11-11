@@ -74,7 +74,7 @@
 				    }
 			    ?>
 			    <div>
-			    	<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php">
+			    	<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php" method="post">
 			    		<h4>Got repair</h4>
 			    		<input type="date" class="form-control" name="got_repair_date" />
 			    		<input type="text" class="form-control" name="got repair_details" placeholder="details.. details.. details.." />
@@ -86,7 +86,7 @@
 		    <div class="col-lg-offset-2 col-lg-4">
 		    	<h3>Fuel Economy:</h3>
 		    	<div>
-		    		<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php">
+		    		<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
 		    			<h4>Got fuel</h4>
 		    			<input type="date" class="form-control" name="got_fuel_date"/>
 		    			<input type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
