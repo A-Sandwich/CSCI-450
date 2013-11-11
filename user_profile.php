@@ -60,9 +60,19 @@
 			</div> 
 			<div class="col-lg-4">
 				<h3><?php echo''.$profileUser->cars[0][2].' odometer:'?></h3>
-				<div class="counter7-container">
-			        <div class="counter7"></div>
-			    </div>
+				<?php
+					$counter = 0;
+					$visible = 'counter-active';
+					foreach ($profileUser->cars as $car) {
+						echo'
+							<div class="counter'.$counter.'-container odometer '.$visible.'">
+						        <div class="counter'.$counter.'"></div>
+						    </div>
+					    ';
+						$visible = 'invisible';
+						$counter++;
+				    }
+			    ?>
 			    <div>
 			    	<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php">
 			    		<h4>Got repair</h4>
@@ -89,24 +99,49 @@
 		</div>
 	</div>
 	<?php
-		echo"
-			<script>
-				$(document).ready( function () {
-		            $('.counter7').jOdometer({
-		                counterStart:'".$profileUser->cars[0][3]."', 
-		                counterEnd: '".$profileUser->cars[0][3]."',
-		                numbersImage: 'assets/images/jodometer-numbers-24pt.png', 
-		                widthNumber: 32,
-		                heightNumber: 54,
-		                spaceNumbers: 0, 
-		                offsetRight:-10,
-		                maxDigits: 10,
-		                speed: 0
-		            });
-		
-				});
-			</script>
-		"
+		$counter = 0;
+		foreach ($profileUser->cars as $car) {
+			echo"
+				<script>
+					$(document).ready( function () {
+			            $('.counter".$counter."').jOdometer({
+			                counterStart:'".$profileUser->cars[$counter][3]."', 
+			                counterEnd: '".$profileUser->cars[$counter][3]."',
+			                numbersImage: 'assets/images/jodometer-numbers-24pt.png', 
+			                widthNumber: 32,
+			                heightNumber: 54,
+			                spaceNumbers: 0, 
+			                offsetRight:-10,
+			                maxDigits: 10,
+			                speed: 0
+			            });
+			
+					});
+				</script>
+				
+				<style>
+					.counter".$counter."{
+					    width:100%;
+					    height:55px;
+					    overflow:hidden;
+					    position:relative;
+					    background-color:transparent;
+					}
+				
+					.counter".$counter."-container{
+				            height:55px;
+				            overflow:hidden;
+				            position:relative;
+				            border: 1px solid #ccc;
+				            border-radius: 2px;
+				            background-image: url('assets/images/jodometer-background.jpg');
+				            background-repeat: repeat-x;
+				            width: 288px;
+			        }
+				</style>
+			";
+			$counter++;
+		};
 	?>
 	<script type="text/javascript">
 		function showChangePicForm() {
@@ -114,9 +149,13 @@
 		}
 		$(document).ready(function(){
 			$('.car').click(function(){
+				$($('.odometer')[$('.car-active').index()]).addClass('invisible');
 				$('.car-active').removeClass('car-active');
 				$(this).addClass('car-active');
+				$($('.odometer')[$(this).index()]).removeClass('invisible');
 			});
+			
+			
 		})		
 	</script>
 </body>

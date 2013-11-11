@@ -1,4 +1,7 @@
-
+.invisible{
+	display:none;
+	visibility:hidden;	
+}
 
 .car-active{
 	color: yellow;
@@ -163,24 +166,7 @@ label.25{
     background-repeat: repeat-x;
     width: 160px;
 }
-.counter7{
-    width:100%;
-    height:55px;
-    overflow:hidden;
-    position:relative;
-    background-color:transparent;
-}
 
-.counter7-container{
-            height:55px;
-            overflow:hidden;
-            position:relative;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            background-image: url('../images/jodometer-background.jpg');
-            background-repeat: repeat-x;
-            width: 288px;
-        }
         
 .cover{
 	background-size: cover;
