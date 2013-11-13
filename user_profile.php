@@ -9,7 +9,9 @@
 		$username = $_SESSION['username'];
 	} else { // The user is not logged in 
 		header('Location: ./index.php'); // send the user back to the index page-- he/she is not logged in anyway why the hell not
-	}	
+	};
+	
+		
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +21,10 @@
 			require 'assets/files/header.php';
 		?>	
 
-		<title>Profile Page</title>	
+		<title>Profile Page</title>
+		<script src="assets/js/underscore.js"></script>
+		<script src="assets/js/backbone.js"></script>
+		<script src="assets/js/garage_backbone.js"></script>	
 	</head>
 
 <body>
@@ -48,8 +53,11 @@
 				</div>
 			</h2> 
 			
-			<div class="jumbotron garage" style="overflow-x:auto;"><!--User's Garage-->
-				<?php
+			<div id="templateLocation">
+		
+			</div>
+			<!--<div class="jumbotron garage" style="overflow-x:auto;"><!--User's Garage-->
+				<!--<?php
 					$active = 'car-active';
 					foreach ($profileUser->cars as $car) {
 						echo '<span class="'.$active.' car"><img class="'.$active.' car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
@@ -57,7 +65,7 @@
 						$active = '';
 					}
 				?>
-			</div> 
+			</div> -->
 			<div class="col-lg-4">
 				<h3><?php echo''.$profileUser->cars[0][2].' odometer:'?></h3>
 				<?php
@@ -98,6 +106,8 @@
 		    </div>
 		</div>
 	</div>
+	
+	
 	<?php
 		$counter = 0;
 		foreach ($profileUser->cars as $car) {
@@ -157,6 +167,54 @@
 			
 			
 		})		
+	</script>
+	
+	<!-- Backbone.js code: Should be moved after functionality is there -->
+	<script type="text/javascript">
+		$('document').ready(function(){
+			console.log('here');
+			myGarage = new Garage;
+			
+			data = <?php $json_data = json_encode($profileUser->cars); echo $json_data;?>;
+			$(data).each(function(index){
+				newModel = new Car;
+				counter = 0;
+				for(key in newModel.attributes){
+					newModel.set(key, data[index][counter]);
+					counter++;
+				};
+				myGarage.push(newModel);
+			});
+			var carView = Backbone.View.extend({
+				tagName: "div",
+				className: "garage_templated",
+				collection: myGarage,
+				el: "#templateLocation",
+				events:{
+					"click": console.log('click')
+				},	
+				
+				render: function(){
+					var html = '<div class="jumbotron garage" style="overflow-x:auto;"><!--Users Garage-->';
+					$(this.collection.models).each(function(){
+						html +=_.template($('#table-data').html(), this.toJSON());
+						console.log(this.toJSON());
+					});
+					html += '</div>';
+					console.log(html);
+					this.$el.html(html);
+				}
+	
+			});
+			garageView = new carView;
+			garageView.render();
+		});
+		
+	</script>
+	
+	<script type="text/html" id='table-data'>
+						<span class="<%=selected%> car"><img class="<%=selected%> car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> 
+						<%=make%> <%=model%></span>
 	</script>
 </body>
 <footer>

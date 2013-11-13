@@ -12,6 +12,5 @@
 <?php include 'assets/files/carousel.php';?>
  
 
-      >
   </body>
 </html>

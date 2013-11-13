@@ -32,6 +32,7 @@ class Car extends Entity {
 			$spec[1] = $model;
 			$spec[2] = $nickname;
 			$spec[3] = $milage;
+			$spec[4] = $cid;
 			$cars[] = $spec;
 		}
 		return $cars;
