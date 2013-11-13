@@ -94,6 +94,16 @@
 		    <div class="col-lg-offset-2 col-lg-4">
 		    	<h3>Fuel Economy:</h3>
 		    	<div>
+		    		<?php
+		    			foreach($profileUser->fuelups as $fuelup) {
+		    				foreach($fuelup as $param){
+		    					echo $param .' ';
+		    				}
+							echo '<br>';
+		    			}
+		    		?>
+		    	</div>
+		    	<div>
 		    		<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
 		    			<h4>Got fuel</h4>
 		    			<input type="date" class="form-control" name="got_fuel_date"/>
