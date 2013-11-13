@@ -24,14 +24,14 @@ class Car extends Entity {
 		$get_user_cars_query = $this->db->prepare("SELECT car_nickname, car_id, make, model, mileage FROM users_cars
 												   WHERE user_id = '$uId'");
 		$get_user_cars_query->execute();
-		$get_user_cars_query->bind_result($nickname, $cid, $make, $model, $milage);
+		$get_user_cars_query->bind_result($nickname, $cid, $make, $model, $mileage);
 		$spec = array();
 		$cars = array();
 		while($get_user_cars_query->fetch()){
 			$spec[0] = $make;
 			$spec[1] = $model;
 			$spec[2] = $nickname;
-			$spec[3] = $milage;
+			$spec[3] = $mileage;
 			$spec[4] = $cid;
 			$cars[] = $spec;
 		}

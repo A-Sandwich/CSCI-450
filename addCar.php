@@ -87,8 +87,8 @@
 			          			</div>
 		          			</div>
 		          		</div>
-		          		<button type="submit" name="submit" id="savecar">Save Car</button>
-		          		<button type="cancel" name="cancel" id="cancel"><a href="./index.php?addlater=1">Add a car later</a></button>
+		          		<button class="btn btn-primary"type="submit" name="submit" id="savecar">Save Car</button>
+		          		<a class="btn btn-danger" href="./index.php?addlater=1">Add a car later</a>
 	          		</form>
         		</div><!--/feed-->
         		<br>	

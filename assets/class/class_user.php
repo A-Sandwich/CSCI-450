@@ -9,6 +9,7 @@ class User extends Entity {
 	// Gets db and data from Entity
 	public $cars;
 	public $pic_path;
+	public $fuelups;
 	
 	function __construct($uId=NULL) {
 		$this->db = new mysqli(HOST, USER, PASSWORD, DATABASE);
@@ -40,10 +41,24 @@ class User extends Entity {
 		$get_profile_pic_path_query->fetch();
 		$get_profile_pic_path_query->close();
 		
-		/*show users cars*/
+		/* show users cars */
 		$general_car = new Car();
 		$this->cars = $general_car->getUserCars($_SESSION['user_id']);
+		
+		/* Get users fuel history 
+		foreach ($this->cars as $car) {
+			$get_fuel_purchases_query = $this->db->prepare("SELECT date, current_mileage, ppg, cost FROM fuel_purchases WHERE ");
+		} */
+		
+		/* Get users fuel history */
+		$get_fuel_purchases_query = $this->db->prepare("SELECT date, current_mileage, ppg, cost FROM fuel_purchases WHERE user_id = ?");
+		$get_fuel_purchases_query->bind_param('i', $_SESSION['user_id']);
+		$get_fuel_purchases_query->execute();
+		$get_fuel_purchases_query->bind_result($n);
+		while($get_fuel_purchases_query->fetch()) {
+			$this->fuelups[] = $n;
 		}
+	}
 	
 	function add_got_fuel($got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid) {
 		$add_fuel_purchase_query = $this->db->prepare('INSERT INTO fuel_purchases (date, current_mileage, ppg, cost, user_id) VALUES (?,?,?,?,?)');
