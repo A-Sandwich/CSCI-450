@@ -17,10 +17,11 @@ if(isset($_POST['carName'], $_POST['mileage'], $_POST['carMake'], $_POST['carMod
 	$check_if_car_exists_query->bind_param('sss', $carMake, $carModel, $carYear);
 	$check_if_car_exists_query->execute();
 	$check_if_car_exists_query->bind_result($car_id);
-	$check_if_car_exists_query->store_result();
+	$check_if_car_exists_query->fetch();
 	if($check_if_car_exists_query->num_rows > 0) {
-		$insert_user_car_query = $mysqli->prepare('INSERT INTO users_cars (car_nickname, mileage, make, model, year, vin, car_id, color, user_id) VALUES (?,?,?,?,?,?)');
-		$insert_user_car_query->bind_param('sisisi', $carName, $mileage, $vin, $carMake, $carModel, $carYear, $car_id, $carColor, $_SESSION['user_id']);
+		$insert_user_car_query = $mysqli->prepare('INSERT INTO users_cars (car_nickname, mileage, make, model, year, vin, car_id, engine_type, color, user_id) 
+												   VALUES (?,?,?,?,?,?,?,?,?,?)');
+		$insert_user_car_query->bind_param('sissisidsi', $carName, $mileage, $carMake, $carModel, $carYear, $vin, $car_id, $engineType, $carColor, $_SESSION['user_id']);
 		$insert_user_car_query->execute();
 		$insert_user_car_query->close();
 	}   // Enter users car information into users_cars table if it exists in the extensive car table already
@@ -32,6 +33,7 @@ if(isset($_POST['carName'], $_POST['mileage'], $_POST['carMake'], $_POST['carMod
 		$insert_user_car_query->close();
 	}   // Enter users car information into users_cars tables if it doesn't exist yet in the extensive car table
 	
+	$check_if_car_exists_query->close();
 	// Redirect users to the index page
 	header('Location: ../index.php');
 }       
