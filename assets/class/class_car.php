@@ -21,10 +21,10 @@ class Car extends Entity {
 	
 	function getUserCars($uId) {
 		// Take user id and query database for their cars, return an array in data
-		$get_user_cars_query = $this->db->prepare("SELECT car_nickname, car_id, make, model, mileage, id FROM users_cars
+		$get_user_cars_query = $this->db->prepare("SELECT car_nickname, car_id, make, model, mileage FROM users_cars
 												   WHERE user_id = '$uId'");
 		$get_user_cars_query->execute();
-		$get_user_cars_query->bind_result($nickname, $cid, $make, $model, $mileage, $id);
+		$get_user_cars_query->bind_result($nickname, $cid, $make, $model, $mileage);
 		$spec = array();
 		$cars = array();
 		while($get_user_cars_query->fetch()){
@@ -32,7 +32,7 @@ class Car extends Entity {
 			$spec[1] = $model;
 			$spec[2] = $nickname;
 			$spec[3] = $mileage;
-			$spec[4] = $id;
+			$spec[4] = $cid;
 			$cars[] = $spec;
 		}
 		return $cars;
