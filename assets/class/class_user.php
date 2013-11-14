@@ -60,9 +60,9 @@ class User extends Entity {
 		}
 	}
 	
-	function add_got_fuel($got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid) {
-		$add_fuel_purchase_query = $this->db->prepare('INSERT INTO fuel_purchases (date, current_mileage, ppg, cost, user_id) VALUES (?,?,?,?,?)');
-		$add_fuel_purchase_query->bind_param('siddi',$got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid);
+	function add_got_fuel($got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid, $userCarId) {
+		$add_fuel_purchase_query = $this->db->prepare('INSERT INTO fuel_purchases (date, current_mileage, ppg, cost, user_id, userCarId) VALUES (?,?,?,?,?,?)');
+		$add_fuel_purchase_query->bind_param('siddii',$got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid, $userCarId);
 		$add_fuel_purchase_query->execute();
 		$add_fuel_purchase_query->close();
 	}
