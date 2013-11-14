@@ -66,54 +66,58 @@
 					}
 				?>
 			</div> -->
+<!--
 			<div class="col-lg-4">
-				<h3><?php echo''.$profileUser->cars[0][2].' odometer:'?></h3>
+				<h3><?php echo''.$profileUser->cars[0][2].' odometer:'?></h3>-->
+
+				<!--
 				<?php
-					$counter = 0;
-					$visible = 'counter-active';
-					foreach ($profileUser->cars as $car) {
-						echo'
-							<div class="counter'.$counter.'-container odometer '.$visible.'">
-						        <div class="counter'.$counter.'"></div>
-						    </div>
-					    ';
-						$visible = 'invisible';
-						$counter++;
-				    }
-			    ?>
-			    <div>
-			    	<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php" method="post">
-			    		<h4>Got repair</h4>
-			    		<input type="date" class="form-control" name="got_repair_date" />
-			    		<input type="text" class="form-control" name="got repair_details" placeholder="details.. details.. details.." />
-			    		<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
-			    		<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />
-			    	</form>
-			    </div>
-		    </div>
-		    <div class="col-lg-offset-2 col-lg-4">
-		    	<h3>Fuel Economy:</h3>
-		    	<div>
-		    		<?php
-		    			foreach($profileUser->fuelups as $fuelup) {
-		    				foreach($fuelup as $param){
-		    					echo $param .' ';
-		    				}
-							echo '<br>';
-		    			}
-		    		?>
-		    	</div>
-		    	<div>
-		    		<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
-		    			<h4>Got fuel</h4>
-		    			<input type="date" class="form-control" name="got_fuel_date"/>
-		    			<input type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
-		    			<input type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
-		    			<input type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
-		    			<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
-		    		</form>
-		    	</div>
-		    </div>
+									$counter = 0;
+									$visible = 'counter-active';
+									foreach ($profileUser->cars as $car) {
+										echo'
+											<div class="counter'.$counter.'-container odometer '.$visible.'">
+												<div class="counter'.$counter.'"></div>
+											</div>
+										';
+										$visible = 'invisible';
+										$counter++;
+									}
+								?>
+								<div>
+									<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php" method="post">
+										<h4>Got repair</h4>
+										<input type="date" class="form-control" name="got_repair_date" />
+										<input type="text" class="form-control" name="got repair_details" placeholder="details.. details.. details.." />
+										<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
+										<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />
+									</form>
+								</div>
+							</div>
+							<div class="col-lg-offset-2 col-lg-4">
+								<h3>Fuel Economy:</h3>
+								<div>
+									<?php
+										foreach($profileUser->fuelups as $fuelup) {
+											foreach($fuelup as $param){
+												echo $param .' ';
+											}
+											echo '<br>';
+										}
+									?>
+								</div>
+								<div>
+									<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
+										<h4>Got fuel</h4>
+										<input type="date" class="form-control" name="got_fuel_date"/>
+										<input type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
+										<input type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
+										<input type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
+										<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
+									</form>
+								</div>-->
+				
+		   <!-- </div>-->
 		</div>
 	</div>
 	
@@ -182,7 +186,8 @@
 	<!-- Backbone.js code: Should be moved after functionality is there -->
 	<script type="text/javascript">
 		$('document').ready(function(){
-			console.log('here');
+			firstItteration = true;
+			
 			myGarage = new Garage;
 			
 			data = <?php $json_data = json_encode($profileUser->cars); echo $json_data;?>;
@@ -193,38 +198,56 @@
 					newModel.set(key, data[index][counter]);
 					counter++;
 				};
+				
+				if(firstItteration == true){
+					newModel.set('selected', 'car-active');
+					firstItteration = false;
+				};
+				
+				
+				
 				myGarage.push(newModel);
 			});
-			var carView = Backbone.View.extend({
-				tagName: "div",
-				className: "garage_templated",
-				collection: myGarage,
-				el: "#templateLocation",
-				events:{
-					"click": console.log('click')
-				},	
-				
-				render: function(){
-					var html = '<div class="jumbotron garage" style="overflow-x:auto;"><!--Users Garage-->';
-					$(this.collection.models).each(function(){
-						html +=_.template($('#table-data').html(), this.toJSON());
-						console.log(this.toJSON());
-					});
-					html += '</div>';
-					console.log(html);
-					this.$el.html(html);
-				}
-	
+			
+			var novusGarageView = carView.extend({
+				collection: myGarage
 			});
-			garageView = new carView;
+			
+			garageView = new novusGarageView;
 			garageView.render();
 		});
 		
 	</script>
 	
-	<script type="text/html" id='table-data'>
-						<span class="<%=selected%> car"><img class="<%=selected%> car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> 
-						<%=make%> <%=model%></span>
+	<script type="text/html" id='jumobtron-content' style='overflow-x:scroll;'>
+			<span class="<%=selected%> car" name="<%= pid %>"><img name="<%= pid %>" class="<%=selected%>" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> 
+			<%=make%> <%=model%></span>
+	</script>
+	
+	<script type="text/html" id="profile_form">
+		<div class="col-lg-4">
+			<div>
+		    	<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php" method="post">
+		    		<h4>Got repair</h4>
+		    		<input type="date" class="form-control" name="got_repair_date" />
+		    		<input type="text" class="form-control" name="got repair_details" placeholder="details.. details.. details.." />
+		    		<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
+		    		<input type="button" class="repairCar car<%=pid%> form-control btn btn-primary" value="Submit" name="got_repair_submit car<%= pid%>" />
+		    	</form>
+		    </div>
+	    </div>
+	    <div class="col-lg-4">
+		    <div>
+				<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
+					<h4>Got fuel</h4>
+					<input id="fuelDate" type="date" class="form-control" name="got_fuel_date"/>
+					<input id="fuelMilage" type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
+					<input id="fuelPrice" type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
+					<input id="fuelTotal" type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
+					<input type="button" class="fuelCar<%=pid%> fuelUp form-control btn btn-primary" value="Submit" name="<%= pid %>"/>
+				</form>
+			</div>
+		</div>
 	</script>
 </body>
 <footer>
