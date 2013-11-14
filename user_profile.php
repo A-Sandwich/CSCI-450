@@ -22,9 +22,6 @@
 		?>	
 
 		<title>Profile Page</title>
-		<script src="assets/js/underscore.js"></script>
-		<script src="assets/js/backbone.js"></script>
-		<script src="assets/js/garage_backbone.js"></script>	
 	</head>
 
 <body>
@@ -56,8 +53,8 @@
 			<div id="templateLocation">
 		
 			</div>
-			<!--<div class="jumbotron garage" style="overflow-x:auto;"><!--User's Garage-->
-				<!--<?php
+			<div class="jumbotron garage" style="overflow-x:auto;"><!--User's Garage-->
+				<?php
 					$active = 'car-active';
 					foreach ($profileUser->cars as $car) {
 						echo '<span class="'.$active.' car"><img class="'.$active.' car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
@@ -65,12 +62,12 @@
 						$active = '';
 					}
 				?>
-			</div> -->
-<!--
-			<div class="col-lg-4">
-				<h3><?php echo''.$profileUser->cars[0][2].' odometer:'?></h3>-->
+			</div>
 
-				<!--
+			<div class="col-lg-4">
+				<h3><?php echo''.$profileUser->cars[0][2].' odometer:'?></h3>
+
+				
 				<?php
 									$counter = 0;
 									$visible = 'counter-active';
@@ -115,9 +112,9 @@
 										<input type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
 										<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
 									</form>
-								</div>-->
+								</div>
 				
-		   <!-- </div>-->
+			</div>
 		</div>
 	</div>
 	
@@ -183,73 +180,6 @@
 		})		
 	</script>
 	
-	<!-- Backbone.js code: Should be moved after functionality is there -->
-	<script type="text/javascript">
-		$('document').ready(function(){
-			firstItteration = true;
-			
-			myGarage = new Garage;
-			
-			data = <?php $json_data = json_encode($profileUser->cars); echo $json_data;?>;
-			$(data).each(function(index){
-				newModel = new Car;
-				counter = 0;
-				for(key in newModel.attributes){
-					newModel.set(key, data[index][counter]);
-					counter++;
-				};
-				
-				if(firstItteration == true){
-					newModel.set('selected', 'car-active');
-					firstItteration = false;
-				};
-				
-				
-				
-				myGarage.push(newModel);
-			});
-			
-			var novusGarageView = carView.extend({
-				collection: myGarage
-			});
-			
-			garageView = new novusGarageView;
-			garageView.render();
-		});
-		
-	</script>
 	
-	<script type="text/html" id='jumobtron-content' style='overflow-x:scroll;'>
-			<span class="<%=selected%> car" name="<%= pid %>"><img name="<%= pid %>" class="<%=selected%>" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> 
-			<%=make%> <%=model%></span>
-	</script>
-	
-	<script type="text/html" id="profile_form">
-		<div class="col-lg-4">
-			<div>
-		    	<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php" method="post">
-		    		<h4>Got repair</h4>
-		    		<input type="date" class="form-control" name="got_repair_date" />
-		    		<input type="text" class="form-control" name="got repair_details" placeholder="details.. details.. details.." />
-		    		<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
-		    		<input type="button" class="repairCar car<%=pid%> form-control btn btn-primary" value="Submit" name="got_repair_submit car<%= pid%>" />
-		    	</form>
-		    </div>
-	    </div>
-	    <div class="col-lg-4">
-		    <div>
-				<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
-					<h4>Got fuel</h4>
-					<input id="fuelDate" type="date" class="form-control" name="got_fuel_date"/>
-					<input id="fuelMilage" type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
-					<input id="fuelPrice" type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
-					<input id="fuelTotal" type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
-					<input type="button" class="fuelCar<%=pid%> fuelUp form-control btn btn-primary" value="Submit" name="<%= pid %>"/>
-				</form>
-			</div>
-		</div>
-	</script>
 </body>
-<footer>
-	
-</footer>
+</html>
