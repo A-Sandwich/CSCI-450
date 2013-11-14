@@ -57,10 +57,11 @@
 				<?php
 					$active = 'car-active';
 					foreach ($profileUser->cars as $car) {
-						echo '<span class="'.$active.' car"><img class="'.$active.' car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
+						echo '<span name="'.$car[5].'" class="'.$active.' car"><img name="'.$car[5].'" class="'.$active.' car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
 						echo $car[0] . ' ' . $car[1].'</span>';
 						$active = '';
 					}
+
 				?>
 			</div>
 
@@ -87,6 +88,7 @@
 										<input type="date" class="form-control" name="got_repair_date" />
 										<input type="text" class="form-control" name="got repair_details" placeholder="details.. details.. details.." />
 										<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
+										<input type="number" id="repairCarId" class="form-control invisible" name="got_repair_car_id"/>
 										<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />
 									</form>
 								</div>
@@ -110,6 +112,7 @@
 										<input type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
 										<input type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
 										<input type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
+										<input type="number" id="fuelCarId" class="form-control invisible" name="got_fuel_car_id"/>
 										<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
 									</form>
 								</div>
@@ -174,6 +177,10 @@
 				$('.car-active').removeClass('car-active');
 				$(this).addClass('car-active');
 				$($('.odometer')[$(this).index()]).removeClass('invisible');
+				
+				$('#fuelCarId').val(this.getAttribute('name'));
+				$('#repairCarId').val(this.getAttribute('name'));
+				//debugger;
 			});
 			
 			
