@@ -49,10 +49,12 @@
 				          					<option val="other">Model</option>
 				          				</select><br><!--dropDown-->
 				          			</div>
-				          			<label for="carYear" class="col-sm-3 control-label">Year</label>
+				          			<label for="carYear" class="col-sm-3 control-label">Year</label> 
 				          			<div class="col-sm-9">
-				          				<input type="number" id="carYear"  class="form-control" name="carYear" placeholder="Year"><br>
-				          			</div>
+				          				<select name="carYear" id="carYear" class="form-control" >
+				          					<option val="other">Year</option>
+				          				</select><br><!--dropdown-->
+				          			</div>				          			
 				          			<label for="carColor" class="col-sm-3 control-label">Color</label>
 				          			<div class="col-sm-9">
 				          				<input type="text" id="carColor" class="form-control"  name="carColor" placeholder="Paint color"><br>
@@ -140,9 +142,26 @@
     				});
 	    		}
 	    		
+	    		function fillYearDropdown()
+	    		{
+	    			$.ajax(
+    				{
+    					url: "assets/car_year.php",
+    					data: { make: $("#carMake").val(), model: $("#carModel").val() },
+    					cache: false,
+    					success: function(html)
+    					{
+    						$("#carYear").html(html);
+    					},
+    				});
+	    		}
+	    		
 	    		$("#carMake").change( function() {
 	    			fillModelDropdown();	
 	    		});  // When user changes the carMake dropdown selection fill the models dropdown
+	    		$("#carModel").change( function(){
+	    			fillYearDropdown();
+	    		});
 	    		
 	    	});
 	    	
