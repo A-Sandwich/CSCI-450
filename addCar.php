@@ -65,8 +65,11 @@
 				          			</div>
 				          			<label for="engineType" class="col-sm-3 control-label">Engine</label>
 				          			<div class="col-sm-9">
-				          				<input type="text" id="engineType" class="form-control"  name="engineType" placeholder="0.0"> Liter Engine<br><br>
+				          				<select name="engineType" id="engineType" class="form-control" >
+				          					<option val="other">Engines</option>
+				          				</select><br><!--dropdown-->
 				          			</div>
+				          			
 			          			</div>
 	          				</div><!--/-->
 		        			<div class=" col-3 col-sm-6 col-lg-6">
@@ -122,7 +125,6 @@
     					cache: false,
     					success: function(html)
     					{
-    						console.log(html);
     						$("#carMake").html(html);
     					},
     				});
@@ -156,11 +158,28 @@
     				});
 	    		}
 	    		
+	    		function fillEngineDropdown()
+	    		{
+	    			$.ajax(
+    				{
+    					url: "assets/car_engines.php",
+    					data: { make: $("#carmake").val() , model: $("#carModel").val() , year: $("#carYear").val() },
+    					cache: false,
+    					success: function(html)
+    					{
+    						$("#engineType").html(html);
+    					},
+    				});
+	    		}
+	    		
 	    		$("#carMake").change( function() {
 	    			fillModelDropdown();	
 	    		});  // When user changes the carMake dropdown selection fill the models dropdown
 	    		$("#carModel").change( function(){
 	    			fillYearDropdown();
+	    		});
+	    		$("#carYear").change( function() {
+	    			fillEngineDropdown();
 	    		});
 	    		
 	    	});
