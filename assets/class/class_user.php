@@ -51,10 +51,10 @@ class User extends Entity {
 		} */
 		
 		/* Get users fuel history */
-		$get_fuel_purchases_query = $this->db->prepare("SELECT date, current_mileage, ppg, cost FROM fuel_purchases WHERE user_id = ? LIMIT 5");
+		$get_fuel_purchases_query = $this->db->prepare("SELECT date, current_mileage, ppg, cost, userCarId FROM fuel_purchases WHERE user_id = ? LIMIT 5");
 		$get_fuel_purchases_query->bind_param('i', $_SESSION['user_id']);
 		$get_fuel_purchases_query->execute();
-		$get_fuel_purchases_query->bind_result($n[0], $n[1], $n[2], $n[3]);
+		$get_fuel_purchases_query->bind_result($n[0], $n[1], $n[2], $n[3], $n[4]);
 		while($get_fuel_purchases_query->fetch()) {
 			$this->fuelups[] = $n;
 		}
