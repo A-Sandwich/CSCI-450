@@ -55,6 +55,7 @@ class User extends Entity {
 		$get_fuel_purchases_query->bind_param('i', $_SESSION['user_id']);
 		$get_fuel_purchases_query->execute();
 		$get_fuel_purchases_query->bind_result($n[0], $n[1], $n[2], $n[3], $n[4]);
+		$this->fuelups = array();
 		while($get_fuel_purchases_query->fetch()) {
 			$this->fuelups[] = $n;
 		}
