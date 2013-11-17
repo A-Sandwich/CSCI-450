@@ -86,7 +86,8 @@
 									<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php" method="post">
 										<h4>Got repair</h4>
 										<input type="date" class="form-control" name="got_repair_date" />
-										<input type="text" class="form-control" name="got repair_details" placeholder="details.. details.. details.." />
+										<input type="text" class="form-control" name="got_repair_part" placeholder="part? or.." />
+										<input type="text" class="form-control" name="got_repair_service" placeholder="service?" />
 										<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
 										<input type="number" id="repairCarId" class="form-control invisible" name="got_repair_car_id"/>
 										<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />

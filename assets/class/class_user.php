@@ -67,6 +67,14 @@ class User extends Entity {
 		$add_fuel_purchase_query->close();
 	}
 	
+	function add_got_repair($got_repair_date, $got_repair_part, $got_repair_service, $got_repair_mileage, $got_repair_car_id)  {
+		$add_repair_query = $this->db->prepare('INSERT INTO repair_temp (date, part, service, mileage, user_id, car_id)
+												VALUES (?,?,?,?,?,?)');
+		$add_repair_query->bind_param('sssiii', $got_repair_date, $got_repair_part, $got_repair_service, $got_repair_mileage, $_SESSION['user_id'], $got_repair_car_id);
+		$add_repair_query->execute();
+		$add_repair_query->close();
+	}
+	
 }
 
 ?>
