@@ -38,6 +38,29 @@ class Car extends Entity {
 		}
 		return $cars;
 	}
+	
+	function getAllSpecs($uId) {
+		// using joins users_cars.car_id to cars.ID
+		
+		$get_all_my_specs_query = $this->db->prepare('SELECT Year, Make, Model, Engine, Fuel, Injection, Gallons, Power FROM cars JOIN users_cars ON cars.ID = users_cars.car_id');
+		$get_all_my_specs_query->execute();
+		$get_all_my_specs_query->bind_result($Year, $Make, $Model, $Engine, $Fuel, $Injection, $Gallons, $Power);
+		$spec = array();
+		$cars_with_specs = array();
+		while($get_all_my_specs_query->fetch())
+		{
+			$spec[0]= $Year;
+			$spec[1]= $Make;
+			$spec[2]= $Model;
+			$spec[3]= $Engine;
+			$spec[4]= $Fuel;
+			$spec[5]= $Injection;
+			$spec[6]= $Gallons;
+			$spec[7]= $Power;
+			$cars_with_specs[] = $spec;
+		}
+		return $cars_with_specs;
+	}
 }
 	
 ?>

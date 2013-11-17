@@ -7,9 +7,10 @@ include_once __DIR__.'/../db_connect.php';
 class User extends Entity {
 	
 	// Gets db and data from Entity
-	public $cars;
-	public $pic_path;
-	public $fuelups;
+	public $cars; // Stores all users car information from users_cars in a multidimensional array
+	public $pic_path; // Stores a users profile picture path to location of the file on server
+	public $fuelups; // Stores all a users fuel purchases in multidimensional array
+	public $myspecs; // Stores all a users cars + specs in multidimensional array
 	
 	function __construct($uId=NULL) {
 		$this->db = new mysqli(HOST, USER, PASSWORD, DATABASE);
@@ -59,6 +60,9 @@ class User extends Entity {
 		while($get_fuel_purchases_query->fetch()) {
 			$this->fuelups[] = $n;
 		}
+		
+		/* Get users car specs */
+		$this->myspecs = $general_car->getAllSpecs($_SESSION['user_id']);
 	}
 	
 	function add_got_fuel($got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid, $userCarId) {
