@@ -92,7 +92,7 @@
 			          			</div>
 		          			</div>
 		          		</div>
-		          		<button class="btn btn-primary"type="submit" name="submit" id="savecar">Save Car</button>
+		          		<br><button class="btn btn-primary"type="submit" name="submit" id="savecar">Save Car</button>
 		          		<a class="btn btn-danger" href="./index.php?addlater=1">Add a car later</a>
 	          		</form>
         		</div><!--/feed-->
@@ -163,7 +163,7 @@
 	    			$.ajax(
     				{
     					url: "assets/car_engines.php",
-    					data: { make: $("#carmake").val() , model: $("#carModel").val() , year: $("#carYear").val() },
+    					data: { make: $("#carMake").val() , model: $("#carModel").val() , year: $("#carYear").val() },
     					cache: false,
     					success: function(html)
     					{
