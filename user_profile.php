@@ -120,7 +120,7 @@
 										<input type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
 										<input type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
 										<input type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
-										<input type="number" id="fuelCarId" class="form-control invisible" name="got_fuel_car_id"/>
+										<input type="number" id="fuelCarId" class="form-control" name="got_fuel_car_id"/>
 										<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
 									</form>
 								</div>
@@ -131,7 +131,7 @@
 									echo'<div class="Fuel_ups">';
 									foreach ($profileUser->cars as $car) {
 										echo'<div class="car_fuel_up '.$active.'">';
-										$fuel_up_info = $newCar->getFuelUps($car[5]);
+										$fuel_up_info = $newCar->getFuelUps($car[5]); // car[5] is the userCarId column from the users_cars table
 										foreach($fuel_up_info as $fuel){
 											echo'<div class="individual_fuel_up">';
 											echo'<h4>Date:'.$fuel[0].'</h4>';
