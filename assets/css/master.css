@@ -127,8 +127,7 @@ label.25{
 	top: 6em;
 	z-index: -1;
 /*	margin-top: 10px;*/
-	border-radius: 5px;
-	height: 180%;	
+	border-radius: 5px;	
 /*
 	padding-left: 3%;
 	padding-right: 3%;
@@ -139,7 +138,7 @@ label.25{
 	position: relative;
 	margin-left: 7em;
 	margin-top: 2em;
-	height: 40em;
+	/*height: 40em;*/
 }
 
 .profile_pic{
