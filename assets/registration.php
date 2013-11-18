@@ -71,7 +71,7 @@ if(isset($_POST['email'], $_POST['p']))
 			</body>
 		</html>
 		";
-		$from = "noreply@novus.site90.com";
+		$from = "noreply@novusgarage.x10.mx";
 		$headers  = "MIME-Version: 1.0\r\n";
 	 	$headers .= "Content-type: text/html; charset: utf8\r\n";
 	 	$headers .= "From: ". $from . "\r\n";
