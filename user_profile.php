@@ -66,7 +66,18 @@
 			</div>
 
 			<div class="col-lg-4">
-				<h3><?php echo''.$profileUser->cars[0][2].' odometer:'?></h3>
+				<?php
+					$active = '';
+					$counter = 0;
+					echo'<div id="odometer_headers">';
+					foreach ($profileUser->cars as $car) {
+						echo'<h3 class="'.$active.' odometer_header">'.$profileUser->cars[$counter][2].' odometer:</h3>';
+						$counter ++;
+						$active = 'invisible';
+					};
+					echo'</div>'
+				?>
+				
 
 				
 				<?php
@@ -175,9 +186,11 @@
 		$(document).ready(function(){
 			$('.car').click(function(){
 				$($('.odometer')[$('.car-active').index()]).addClass('invisible');
+				$($('.odometer_header')[$('.car-active').index()]).addClass('invisible');
 				$('.car-active').removeClass('car-active');
 				$(this).addClass('car-active');
 				$($('.odometer')[$(this).index()]).removeClass('invisible');
+				$($('.odometer_header')[$(this).index()]).removeClass('invisible');
 				
 				$('#fuelCarId').val(this.getAttribute('name'));
 				$('#repairCarId').val(this.getAttribute('name'));
