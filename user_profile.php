@@ -113,9 +113,10 @@
 							</div>
 							<div class="col-lg-offset-2 col-lg-4">
 								<h3>Fuel Economy:</h3>
-								<div>
+								<span id="show_fuel" style="white-space: nowrap ;display: inline-block;"> <h4 style="white-space: nowrap ;display: inline-block;">Got fuel</h4><span style="white-space: nowrap ;display: inline-block;" class = "glyphicon glyphicon-chevron-down"></span></span>
+								
+								<div id="fuelForm">
 									<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
-										<h4>Got fuel</h4>
 										<input type="date" class="form-control" name="got_fuel_date"/>
 										<input type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
 										<input type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
@@ -146,12 +147,6 @@
 										$active = 'invisible';
 									}
 									echo'</div>'
-									/*foreach($profileUser->fuelups as $fuelup) {
-										foreach($fuelup as $param){
-											echo $param .' ';
-										}
-										echo '<br>';
-									}*/
 								?>
 				
 			</div>
@@ -227,7 +222,13 @@
 			
 		})		
 	</script>
-	
+	<!-- Toggle Fuel Form -->
+	<script type="text/javascript">
+		$('#show_fuel').click(function(){
+			$('#fuelForm').slideToggle("slow");
+		});
+		
+	</script>
 	
 </body>
 </html>
