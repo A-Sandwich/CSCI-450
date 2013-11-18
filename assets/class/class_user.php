@@ -70,6 +70,11 @@ class User extends Entity {
 		$add_fuel_purchase_query->bind_param('siddii',$got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid, $userCarId);
 		$add_fuel_purchase_query->execute();
 		$add_fuel_purchase_query->close();
+		
+		// update the new mileage
+		$update_mileage_query = $this->db->prepare("UPDATE users_cars SET mileage = '$got_fuel_mileage' WHERE user_id = '$uid' AND id = '$userCarId'");
+		$update_mileage_query->execute();
+		$update_mileage_query->close();
 	}
 	
 	function add_got_repair($got_repair_date, $got_repair_part, $got_repair_service, $got_repair_mileage, $got_repair_car_id)  {
