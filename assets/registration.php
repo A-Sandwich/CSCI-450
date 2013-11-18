@@ -63,7 +63,7 @@ if(isset($_POST['email'], $_POST['p']))
 						<strong>date of birth: </strong>".$dob." <br>
 						</p>
 					</div>
-					<p>Thanks for letting us help you be the most responsible car owner you can be! <br>Now that you Novus, <a href='http://www.novus.site90.com/login.php'>Log into your Novus Garage account!</a></p>
+					<p>Thanks for letting us help you be the most responsible car owner you can be! <br>Now that you Novus, <a href='http://www.novusgarage.x10.mx/login.php'>Log into your Novus Garage account!</a></p>
 					
 					<br><br><p>Sincerely, <br><br>
 					Us Novus Geeks</p>

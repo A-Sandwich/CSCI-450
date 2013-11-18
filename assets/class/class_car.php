@@ -38,7 +38,7 @@ class Car extends Entity {
 		}
 		return $cars;
 	}
-	
+	/*
 	function getAllSpecs($uId) {
 		// using joins users_cars.car_id to cars.ID
 		
@@ -60,7 +60,7 @@ class Car extends Entity {
 			$cars_with_specs[] = $spec;
 		}
 		return $cars_with_specs;
-	}
+	}*/
 }
 	
 ?>

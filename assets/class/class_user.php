@@ -61,8 +61,8 @@ class User extends Entity {
 			$this->fuelups[] = $n;
 		}
 		
-		/* Get users car specs */
-		$this->myspecs = $general_car->getAllSpecs($_SESSION['user_id']);
+		/* Get users car specs 
+		$this->myspecs = $general_car->getAllSpecs($_SESSION['user_id']);*/
 	}
 	
 	function add_got_fuel($got_fuel_date, $got_fuel_mileage, $got_fuel_ppg, $got_fuel_total_cost, $uid, $userCarId) {
