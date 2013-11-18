@@ -24,19 +24,38 @@ class Car extends Entity {
 		$get_user_cars_query = $this->db->prepare("SELECT car_nickname, car_id, make, model, mileage, Id FROM users_cars
 												   WHERE user_id = '$uId'");
 		$get_user_cars_query->execute();
-		$get_user_cars_query->bind_result($nickname, $cid, $make, $model, $mileage, $id);
+		$get_user_cars_query->bind_result($nickname, $cid, $make, $model, $milage, $id);
 		$spec = array();
 		$cars = array();
 		while($get_user_cars_query->fetch()){
 			$spec[0] = $make;
 			$spec[1] = $model;
 			$spec[2] = $nickname;
-			$spec[3] = $mileage;
+			$spec[3] = $milage;
 			$spec[4] = $cid;
 			$spec[5] = $id;
 			$cars[] = $spec;
 		}
 		return $cars;
+	}
+	
+	function getFuelUps($car_id){
+		$get_user_car_fuel_up = $this->db->prepare("SELECT date, current_mileage, ppg, cost, user_id, userCarId FROM fuel_purchases
+												   WHERE user_id = '$car_id'");
+		$get_user_car_fuel_up->execute();
+		$get_user_car_fuel_up->bind_result($date, $current_milage, $ppg, $cost, $user_id, $userCarId);
+		$all_refuels = array();
+		$fuel_up = array();
+		while($get_user_car_fuel_up->fetch()){
+			$fuel_up[0] = $date;
+			$fuel_up[1] = $current_milage;
+			$fuel_up[2] = $ppg;
+			$fuel_up[3] = $cost;
+			$fuel_up[4] = $user_id;
+			$fuel_up[5] = $userCarId;
+			$all_refuels[] = $fuel_up;
+		}
+		return $all_refuels;
 	}
 	/*
 	function getAllSpecs($uId) {

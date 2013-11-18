@@ -3,6 +3,7 @@
 	include 'assets/db_connect.php';
 	require_once 'assets/files/loggedIn.php';
 	require_once 'assets/class/class_user.php';
+	require_once 'assets/class/class_car.php';
 	
 	if($loggedIn) { // The user is logged in
 		// get some useful information about the user from the session array
@@ -104,19 +105,14 @@
 										<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />
 									</form>
 								</div>
+								
+								
+								<?php
+									
+								?>
 							</div>
 							<div class="col-lg-offset-2 col-lg-4">
 								<h3>Fuel Economy:</h3>
-								<div>
-									<?php
-										foreach($profileUser->fuelups as $fuelup) {
-											foreach($fuelup as $param){
-												echo $param .' ';
-											}
-											echo '<br>';
-										}
-									?>
-								</div>
 								<div>
 									<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
 										<h4>Got fuel</h4>
@@ -128,6 +124,35 @@
 										<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
 									</form>
 								</div>
+								<h3>Past Fuel Ups:</h3>
+								<?php
+									$newCar = new Car();
+									$active = '';
+									echo'<div class="Fuel_ups">';
+									foreach ($profileUser->cars as $car) {
+										echo'<div class="car_fuel_up '.$active.'">';
+										$fuel_up_info = $newCar->getFuelUps($car[5]);
+										foreach($fuel_up_info as $fuel){
+											echo'<div class="individual_fuel_up">';
+											echo'<h4>Date:'.$fuel[0].'</h4>';
+											echo'<p>';
+											echo'Mileage: '.$fuel[1].'<br />';
+											echo'Price Per Gallon: '.$fuel[2].'<br />';
+											echo'Total Cost: '.$fuel[3].'<br />';
+											echo'</p>';
+											echo'</div>';
+										}
+										echo'</div>';
+										$active = 'invisible';
+									}
+									echo'</div>'
+									/*foreach($profileUser->fuelups as $fuelup) {
+										foreach($fuelup as $param){
+											echo $param .' ';
+										}
+										echo '<br>';
+									}*/
+								?>
 				
 			</div>
 		</div>
@@ -187,10 +212,12 @@
 			$('.car').click(function(){
 				$($('.odometer')[$('.car-active').index()]).addClass('invisible');
 				$($('.odometer_header')[$('.car-active').index()]).addClass('invisible');
+				$($('.car_fuel_up')[$('.car-active').index()]).addClass('invisible');
 				$('.car-active').removeClass('car-active');
 				$(this).addClass('car-active');
 				$($('.odometer')[$(this).index()]).removeClass('invisible');
 				$($('.odometer_header')[$(this).index()]).removeClass('invisible');
+				$($('.car_fuel_up')[$(this).index()]).removeClass('invisible');
 				
 				$('#fuelCarId').val(this.getAttribute('name'));
 				$('#repairCarId').val(this.getAttribute('name'));
