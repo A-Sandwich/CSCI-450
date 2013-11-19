@@ -101,7 +101,7 @@
 										<input type="text" class="form-control" name="got_repair_part" placeholder="part? or.." />
 										<input type="text" class="form-control" name="got_repair_service" placeholder="service?" />
 										<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
-										<input type="number" id="repairCarId" class="form-control invisible" name="got_repair_car_id"/>
+										<input type="number" id="repairCarId" class="form-control invisible" value"0" name="got_repair_car_id"/>
 										<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />
 									</form>
 								</div>
@@ -121,7 +121,7 @@
 										<input type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
 										<input type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
 										<input type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
-										<input type="number" id="fuelCarId" class="form-control" name="got_fuel_car_id"/>
+										<input type="number" id="fuelCarId" value="0" class="form-control invisible" name="got_fuel_car_id"/>
 										<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
 									</form>
 								</div>
@@ -219,7 +219,8 @@
 				//debugger;
 			});
 			
-			
+			$('#repairCarId').val($('.car-active')[0].getAttribute('name'));
+			$('#fuelCarId').val($('.car-active')[0].getAttribute('name'));
 		})		
 	</script>
 	<!-- Toggle Fuel Form -->
