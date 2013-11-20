@@ -4,7 +4,8 @@
 }
 
 .car-active{
-	color: yellow;
+	color: #0099cc;
+	text-shadow: -6px -6px  16px #000;
 }
 
 button.signIn{
