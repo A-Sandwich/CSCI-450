@@ -65,15 +65,29 @@ class Car extends Entity {
 		$get_user_car_maintenances->execute();
 		$get_user_car_maintenances->bind_result($date, $part, $service, $mileage, $user_id, $cid, $maintenances_unique_ID);
 		$all_repairs = array();
-		$repair = array();
+		$maintenances = array();
 		while($get_user_car_maintenances->fetch()) {
-			$repair[0] = $date;
-			$repair[1] = $part;
-			$repair[2] = $service;
-			$repair[3] = $mileage;
-			$repair[4] = $user_id;
-			$repair[5] = $cid;
-			$repair[6] = $maintenances_unique_ID;
+			$maintenances[0] = $date;
+			$maintenances[1] = $part;
+			$maintenances[2] = $service;
+			$maintenances[3] = $mileage;
+			$maintenances[4] = $user_id;
+			$maintenances[5] = $cid;
+			$maintenances[6] = $maintenances_unique_ID;
+			$all_repairs[] = $maintenances;
+		}
+		return $maintenances;
+	}
+	
+	function calculateFuelEconomy($uId) {
+		$get_users_car_ids_query = $this->db->prepare("SELECT id FROM users_cars WHERE user_id = '$uId' ");
+		$get_users_car_ids_query->execute();
+		$get_users_car_ids_query->bind_result($cId);
+		while($get_users_car_ids_query->fetch()){
+			$users_cars[] = $cId;
+		}
+		foreach($users_cars as $carId) {
+			$refuels = $this->getFuelUps($carId);
 		}
 	}
 	

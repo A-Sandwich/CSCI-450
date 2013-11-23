@@ -77,6 +77,13 @@ class User extends Entity {
 		$update_mileage_query->close();
 	}
 	
+	function edit_fuelup($new_date, $new_mileage, $new_ppg, $new_total_cost, $uid, $userCarId, $fuel_up_unique_row_id) {
+		$edit_fuelup_query = $this->db->prepare("UPDATE fuel_purchases SET date = '$new_date' , current_mileage = '$new_mileage', ppg = '$new_ppg', cost = '$new_total_cost'
+							 WHERE ID = '$fuel_up_unique_row_id' ");
+		$edit_fuelup_query->execute();
+		$edit_fuelup_query->close();
+	}
+	
 	function add_got_repair($got_repair_date, $got_repair_part, $got_repair_service, $got_repair_mileage, $got_repair_car_id)  {
 		$add_repair_query = $this->db->prepare('INSERT INTO repair_temp (date, part, service, mileage, user_id, car_id)
 												VALUES (?,?,?,?,?,?)');
@@ -85,6 +92,11 @@ class User extends Entity {
 		$add_repair_query->close();
 	}
 	
+	function edit_repair ($new_date, $new_part, $new_service, $new_mileage, $got_repair_car_id, $repair_unique_row_id) {
+		$edit_repair_query = $this->db->prepare("UPDATE repair_temp SET date='$new_date',part='$new_part',service='$new_service',mileage='$new_mileage'");
+		$edit_repair_query->execute();
+		$edit_repair_query->close();
+	}
 }
 
 ?>
