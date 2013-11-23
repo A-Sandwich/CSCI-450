@@ -97,19 +97,41 @@
 								<div>
 									<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php" method="post">
 										<h4>Got repair</h4>
-										<input type="date" class="form-control" name="got_repair_date" />
-										<input type="text" class="form-control" name="got_repair_part" placeholder="part? or.." />
-										<input type="text" class="form-control" name="got_repair_service" placeholder="service?" />
-										<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
+										<input id="maintenance_date" type="date" class="form-control" name="got_repair_date" />
+										<input id="maintenance_parts" type="text" class="form-control" name="got_repair_part" placeholder="part? or.." />
+										<input id="maintenance_service" type="text" class="form-control" name="got_repair_service" placeholder="service?" />
+										<input id="maintenance_mileage" type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
 										<input type="number" id="repairCarId" class="form-control invisible" value"0" name="got_repair_car_id"/>
-										<input type="number" id="updateRepairCarId" class="form-control" value="0" name="update_repair"/>
+										<input type="number" id="updateRepairCarId" class="form-control invisible" value="0" name="update_repair"/>
 										<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />
 									</form>
 								</div>
-								
-								
+							
+								<h3>Repairs:</h3>
 								<?php
-									
+									$newCar = new Car();
+									$active = '';
+									echo'<div class="repair">';
+									foreach ($profileUser->cars as $car) {
+										echo'<div class="car_repair '.$active.'">';
+										$maintenaces_data = $newCar->getMaintenances($car[5]); // car[5] is the userCarId column from the users_cars table
+										foreach($maintenaces_data as $maintenance){
+											echo'<div class="individual_maintenance" name="'.$maintenance[6].'">';
+											echo'<h4><strong>Date:</strong><div class="maintenance_date" style="display: inline">'.$maintenance[0].'</div></h4>';
+											if($maintenance[1] != ''){
+												echo'<strong>Part(s) used: </strong><div class="maintenance_parts" style="display: inline">'.$maintenance[1].'</div><br />';
+											}
+											if($maintenance[2] != ''){
+												echo'<strong>Service: </strong><div class="maintenance_service" style="display: inline">'.$maintenance[2].'</div><br />';
+											}
+											echo'<strong>Mileage: </strong><div class="maintenance_mileage" style="display: inline">'.$maintenance[3].'</div><br />';
+											echo'<button class="invisible edit_maintenance form-control btn btn-primary btn-xs" value="edit" name="'.$maintenance[6].'"/>Edit</button>';
+											echo'</div>';
+										}
+										echo'</div>';
+										$active = 'invisible';
+									}
+									echo'</div>'
 								?>
 							</div>
 							<div class="col-lg-offset-2 col-lg-4">
@@ -133,15 +155,15 @@
 									$active = '';
 									echo'<div class="fuel_ups">';
 									foreach ($profileUser->cars as $car) {
-										echo'<div class="car_fuel_up '.$active.'">';
+										echo'<div class="maintenance '.$active.'">';
 										$fuel_up_info = $newCar->getFuelUps($car[5]); // car[5] is the userCarId column from the users_cars table
 										foreach($fuel_up_info as $fuel){
-											echo'<div class="individual_fuel_up" name="'.$fuel[6].'">';
-											echo'<h4>Date:'.$fuel[0].'</h4>';
+											echo'<div class="individual_maintenance" name="'.$fuel[6].'">';
+											echo'<h4><strong>Date:</strong>'.$fuel[0].'</h4>';
 											echo'<p>';
-											echo'Mileage: '.$fuel[1].'<br />';
-											echo'Price Per Gallon: '.$fuel[2].'<br />';
-											echo'Total Cost: '.$fuel[3].'<br />';
+											echo'<strong>Mileage: </strong>'.$fuel[1].'<br />';
+											echo'<strong>Price Per Gallon: </strong>'.$fuel[2].'<br />';
+											echo'<strong>Total Cost: </strong>'.$fuel[3].'<br />';
 											echo'</p>';
 											echo'<button class="invisible edit_fuel form-control btn btn-primary btn-xs" value="edit" name="'.$fuel[6].'"/>Edit</button>';
 											echo'<div class="fuel_data invisible"><p class="date">'.$fuel[0].'</p>';
@@ -212,6 +234,7 @@
 		}
 		$(document).ready(function(){
 			$('.car').click(function(){
+				$($('.car_repair')[$('.car-active').index()]).addClass('invisible');
 				$($('.odometer')[$('.car-active').index()]).addClass('invisible');
 				$($('.odometer_header')[$('.car-active').index()]).addClass('invisible');
 				$($('.car_fuel_up')[$('.car-active').index()]).addClass('invisible');
@@ -220,9 +243,13 @@
 				$($('.odometer')[$(this).index()]).removeClass('invisible');
 				$($('.odometer_header')[$(this).index()]).removeClass('invisible');
 				$($('.car_fuel_up')[$(this).index()]).removeClass('invisible');
+				$($('.car_repair')[$(this).index()]).removeClass('invisible');
 				
 				$('#fuelCarId').val(this.getAttribute('name'));
 				$('#repairCarId').val(this.getAttribute('name'));
+				
+				$('#updateRepairCarId').val(0);
+				$('#updateFuelCarId').val(0);
 			});
 			
 			
@@ -230,12 +257,18 @@
 			$('#fuelCarId').val($('.car-active')[0].getAttribute('name'));
 			
 			$('.individual_fuel_up').mouseenter(function(){
-				
 				$(this).children('button').removeClass('invisible');
-
 			});
 			
 			$('.individual_fuel_up').mouseleave(function(){
+				$(this).children('button').addClass('invisible');
+			});
+			
+			$('.individual_maintenance').mouseenter(function(){
+				$(this).children('button').removeClass('invisible');
+			});
+			
+			$('.individual_maintenance').mouseleave(function(){
 				$(this).children('button').addClass('invisible');
 			});
 			
@@ -246,10 +279,19 @@
 				$('#fuel_ppg').val($(this).siblings('.fuel_data').find('.ppg').html());
 				$('#fuel_cost').val($(this).siblings('.fuel_data').find('.cost').html());
 			});
+				
+			$('.edit_maintenance').click(function(){
+				$('#updateRepairCarId').val(this.getAttribute('name'));
+				$('#maintenance_date').val($(this).siblings('.maintenance_date').html());
+				$('#maintenance_parts').val($(this).siblings('.maintenance_parts').html());
+				$('#maintenance_service').val($(this).siblings('.maintenance_service').html());
+				$('#maintenance_mileage').val($(this).siblings('.maintenance_mileage').html());
+			});		
 		
 		
-		})		
+		});
 	</script>
+	
 	<!-- Toggle Fuel Form -->
 	<script type="text/javascript">
 		$('#show_fuel').click(function(){
