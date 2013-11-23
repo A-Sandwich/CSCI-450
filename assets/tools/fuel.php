@@ -36,7 +36,7 @@
       echo "Error creating table: " . mysqli_error($con);
     }*/
 
-    //mysqli_query($con, "DELETE FROM cars");
+    mysqli_query($con, "DELETE FROM fuel");
     //mysqli_query($con, "ALTER TABLE `cars` auto_increment = 1");
 
     ini_set('max_execution_time', 600); //300 seconds = 5 minutes
@@ -99,9 +99,9 @@
 
    //for($i=1; $i<2; $i++)
    //{
-     $results_page1 = curl($results_urls[5]); //Downloading the results page1 using our curl() function
+     $results_page1 = curl($results_urls[1]); //Downloading the results page1 using our curl() function
      $results_page1 = scrape_between($results_page1, "<table id=\"ctl00_ctl16_ctl00_rptSec_ctl00_dlistFilters\"", "<div class=\"mgn_b s8_f\">");    //Scrapping out only the section with links
-     $separate_results1 = explode("<td valign=\"top\">", $results_page1);   //Expoding the results into separate parts into an array
+       $separate_results1 = explode("<td valign=\"top\">", $results_page1);   //Expoding the results into separate parts into an array
      foreach($separate_results1 as $separate_result1)
      {
        if($separate_result1 != "")
@@ -109,11 +109,35 @@
          $carInfo = scrape_between($separate_result1, "title=\"", "\"");
          $carInfo = explode(" ", $carInfo);
          $carSize = sizeof($carInfo);
-         for($i=0; $i<$carSize; $i++)
+         echo("CarSize: ");
+         print_r($carInfo);
+         echo("<br>");
+
+
+         if($carSize>1)
          {
-           $carName[$i] = $carInfo[$i];
-           $carFinal[$n] = $carName[$i];
-           $n++;
+           if($carInfo[2] == "General" || $carInfo[2] == "Martin" || $carInfo[2] == "Rover")
+           {
+             $carInfo[1] = ($carInfo[1] . " " . $carInfo[2]);
+             unset($carInfo[2]);
+             $carInfo = array_values($carInfo);
+           }
+         }
+         echo("Adjusted1: ");
+         print_r($carInfo);
+         echo("<br>");
+
+         $carSize1 = sizeof($carInfo);
+
+         if($carSize1 >3)
+         {
+           $carSize1 -= 2;
+           for($i=1; $i<$carSize1; $i++)
+           {
+             $j = $i + 2;
+             $carInfo[2] = ($carInfo[2] . " " . $carInfo[$j]);
+             unset($carInfo[$j+1]);
+           }
          }
 
          $results_urls1[] = "http://www.automobilemag.com" . scrape_between($separate_result1, "href='", "'>"); //Scraping the page
@@ -124,66 +148,40 @@
 
            if (strpos($final,'<div class="listing">') !== false)
            {
-             $final = scrape_between($final, "<div class=\"mod-specs-section\">", "</ul>");
-             $liter = scrape_between($final, "Engine: ", "L");
-             $separate_results2 = explode("<li", $final);
-             if($z != 0)
-             {
-               $n = 0;
-               $z++;
-             }
-             foreach($separate_results2 as $separate_final)
-             {
-               if($separate_final != "")
-               {
-                 $carFinal[$n] = scrape_between($separate_final, ">", "</li>");
-                 $n++;
-               }
-             }
+             $n = 0;
+             $carFinal[$n] = scrape_between($final, "Fuel Economy:", "highway");
+             echo("String Check: ");
+             print_r($carFinal);
+             echo("<br>");
+             $carFinal[$n] = str_replace("Gasoline ", "", $carFinal[$n]);
+             $carFinal[$n] = str_replace(" MPG ", "", $carFinal[$n]);
+             $carFinal[$n] = str_replace("city", "", $carFinal[$n]);
+             $carFinal[$n] = str_replace("EPA (08):, ", "", $carFinal[$n]);
+             $carFinal[$n] = str_replace("Gasoline:,", "", $carFinal[$n]);
+             echo("String Check1: ");
+             print_r($carFinal);
+             echo("<br>");
+             $carFinal1 = explode(', ', $carFinal[$n]);
+             unset($carFinal);
+             $carFinal[0] = ($carFinal1[0] . "/" . $carFinal1[1]);
 
-             unset($carFinal[7]);
-             $carFinal = array_values($carFinal);
-             $sizecheck1 = sizeof($carFinal);
-             for($s=0; $s<$sizecheck1; $s++)
-             {
-               if($carFinal[$s] == "")
-               {
-                 unset($carFinal[$s]);
-               }
-             }
-             $carFinal = array_values($carFinal);
-             $sizecheck2 = sizeof($carFinal);
-             if($sizecheck2 == 10)
-             {
-               unset($carFinal[3]);
-             }
-             $carFinal = array_values($carFinal);
-             $sizecheck6 = sizeof($carFinal);
-             if($sizecheck6 == 9)
-             {
-               unset($carFinal[5]);
-             }
-             $carFinal = array_values($carFinal);
-             $carFinal[3] = ($liter . "-liter");
+             echo("Car Info: ");
+             print_r($carInfo);
+             echo("<br>");
+             echo("Fuel1: ");
+             print_r($carFinal);
+             echo("<br>");
+             echo("<br>");
              $t=0;
-             $first = $carFinal[$t];
-             $t++;
-             $second = $carFinal[$t];
-             $t++;
-             $third = $carFinal[$t];
-             $t++;
              $fourth = $carFinal[$t];
+             $first = $carInfo[$t];
              $t++;
-             $fifth = $carFinal[$t];
+             $second = $carInfo[$t];
              $t++;
-             $sixth = $carFinal[$t];
-             $t++;
-             $seventh = $carFinal[$t];
-             $t++;
-             $eighth = $carFinal[$t];
+             $third = $carInfo[$t];
 
-             $query = "INSERT INTO cars (Year, Make, Model, Engine, Fuel, Injection, Gallons, Power)
-                       VALUES ('$first', '$second', '$third', '$fourth', '$fifth', '$sixth', '$seventh', '$eighth')";
+             $query = "INSERT INTO fuel (Year, Make, Model, fuel)
+                       VALUES ('$first', '$second', '$third', '$fourth')";
 
                mysqli_query($con, $query) or die(mysqli_error($con));
                unset($carFinal);
@@ -191,78 +189,45 @@
            else
            {
              $final = scrape_between($final, "<div id=\"performance_efficiencyRow\">", "</td>");
-             if (strpos($final,'<div style="display:inline">Engine: ') !== false)
+             $carFinal[0] = "";
+             if(strpos($final, 'Fuel economy EPA highway (mpg):') !== false)
              {
-               $liter = scrape_between($final, "Engine: ", "L");
+               $separate_results2[] = scrape_between($final, "fuel economy EPA highway (mpg): ", "</div>");
+               echo("String Check: ");
+               print_r($separate_results2);
+               echo("<br>");
+               $separate_results = str_replace(" and EPA city (mpg): ", "/", $separate_results2[0]);
+               unset($separate_results2);
+               $carFinal[0] = $separate_results;
              }
-             else
+             elseif(strpos($final, 'Fuel economy: EPA (08):, ') !== false)
              {
-               $liter = scrape_between($final, "cc ", " liters");
+               $separate_results2[] = scrape_between($final, "Fuel economy: EPA (08):, ", " MPG highway");
+               echo("String Check: ");
+               print_r($separate_results2);
+               echo("<br>");
+               $separate_results = str_replace(" MPG city, ", "/", $separate_results2[0]);
+               unset($separate_results2);
+               $carFinal[0] = $separate_results;
              }
-             $separate_results2 = explode("</div><div style=\"display:inline\"", $final);
-             foreach($separate_results2 as $separate_final)
-             {
-               if($separate_final != "")
-               {
-                 $carFinal[$n] = scrape_between($separate_final, ">", "</div>");
-                 $n++;
-               }
-             }
-             $carFinal = array_values($carFinal);
-             $sizecheck3 = sizeof($carFinal);
-             for($s=0; $s<$sizecheck3; $s++)
-             {
-               if($carFinal[$s] == "")
-               {
-                 unset($carFinal[$s]);
-               }
-             }
-             $carFinal = array_values($carFinal);
-             if($carFinal[3] == "Turbocharged")
-             {
-               unset($carFinal[3]);
-             }
-             $carFinal = array_values($carFinal);
-             $sizecheck4 = sizeof($carFinal);
-             if($sizecheck4 == 10)
-             {
-               unset($carFinal[5]);
-               unset($carFinal[6]);
-             }
-             if($sizecheck4 == 9)
-             {
-               unset($carFinal[5]);
-             }
-             $carFinal = array_values($carFinal);
-             $sizecheck2 = sizeof($carFinal);
-             for($s=0; $s<$sizecheck2; $s++)
-             {
-               if($carFinal[$s] == "")
-               {
-                 unset($carFinal[$s]);
-               }
-             }
-             $carFinal = array_values($carFinal);
-             $carFinal[3] = ($liter . "-liter");
+             echo("Car Info: ");
+             print_r($carInfo);
+             echo("<br>");
+             echo("Fuel2: ");
+             print_r($carFinal);
+             echo("<br>");
+             echo("<br>");
              $t=0;
-             $first = $carFinal[$t];
-             $t++;
-             $second = $carFinal[$t];
-             $t++;
-             $third = $carFinal[$t];
-             $t++;
              $fourth = $carFinal[$t];
+             $first = $carInfo[$t];
              $t++;
-             $fifth = $carFinal[$t];
+             $second = $carInfo[$t];
              $t++;
-             $sixth = $carFinal[$t];
+             $third = $carInfo[$t];
              $t++;
-             $seventh = $carFinal[$t];
-             $t++;
-             $eighth = $carFinal[$t];
 
-             $query = "INSERT INTO cars (Year, Make, Model, Engine, Fuel, Injection, Gallons, Power)
-                       VALUES ('$first', '$second', '$third', '$fourth', '$fifth', '$sixth', '$seventh', '$eighth')";
+             $query = "INSERT INTO fuel (Year, Make, Model, fuel)
+                       VALUES ('$first', '$second', '$third', '$fourth')";
 
              mysqli_query($con, $query) or die(mysqli_error($con));
              unset($carFinal);
