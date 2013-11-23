@@ -102,6 +102,7 @@
 										<input type="text" class="form-control" name="got_repair_service" placeholder="service?" />
 										<input type="number" class="form-control" name="got_repair_current_mileage" placeholder="current mileage"/>
 										<input type="number" id="repairCarId" class="form-control invisible" value"0" name="got_repair_car_id"/>
+										<input type="number" id="updateRepairCarId" class="form-control" value="0" name="update_repair"/>
 										<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />
 									</form>
 								</div>
@@ -117,11 +118,12 @@
 								
 								<div id="fuelForm">
 									<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
-										<input type="date" class="form-control" name="got_fuel_date"/>
-										<input type="number" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
-										<input type="text" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
-										<input type="text" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
+										<input type="date" id="fuel_date" class="form-control" name="got_fuel_date"/>
+										<input type="number" id="fuel_mileage" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
+										<input type="text" id="fuel_ppg" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
+										<input type="text" id="fuel_cost" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
 										<input type="number" id="fuelCarId" value="0" class="form-control invisible" name="got_fuel_car_id"/>
+										<input type="number" id="updateFuelCarId" value="0" class="form-control invisible" name="update_fuel_up"/>
 										<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
 									</form>
 								</div>
@@ -129,7 +131,7 @@
 								<?php
 									$newCar = new Car();
 									$active = '';
-									echo'<div class="Fuel_ups">';
+									echo'<div class="fuel_ups">';
 									foreach ($profileUser->cars as $car) {
 										echo'<div class="car_fuel_up '.$active.'">';
 										$fuel_up_info = $newCar->getFuelUps($car[5]); // car[5] is the userCarId column from the users_cars table
@@ -141,6 +143,11 @@
 											echo'Price Per Gallon: '.$fuel[2].'<br />';
 											echo'Total Cost: '.$fuel[3].'<br />';
 											echo'</p>';
+											echo'<button class="invisible edit_fuel form-control btn btn-primary btn-xs" value="edit" name="'.$fuel[6].'"/>Edit</button>';
+											echo'<div class="fuel_data invisible"><p class="date">'.$fuel[0].'</p>';
+											echo'<p class="mileage">'.$fuel[1].'</p>';
+											echo'<p class="ppg">'.$fuel[2].'</p>';
+											echo'<p class="cost">'.$fuel[3].'</p></div>';
 											echo'</div>';
 										}
 										echo'</div>';
@@ -217,8 +224,30 @@
 				$('#fuelCarId').val(this.getAttribute('name'));
 				$('#repairCarId').val(this.getAttribute('name'));
 			});
+			
+			
 			$('#repairCarId').val($('.car-active')[0].getAttribute('name'));
 			$('#fuelCarId').val($('.car-active')[0].getAttribute('name'));
+			
+			$('.individual_fuel_up').mouseenter(function(){
+				
+				$(this).children('button').removeClass('invisible');
+
+			});
+			
+			$('.individual_fuel_up').mouseleave(function(){
+				$(this).children('button').addClass('invisible');
+			});
+			
+			$('.edit_fuel').click(function(){
+				$('#updateFuelCarId').val(this.getAttribute('name'));
+				$('#fuel_date').val($(this).siblings('.fuel_data').find('.date').html());
+				$('#fuel_mileage').val($(this).siblings('.fuel_data').find('.mileage').html());
+				$('#fuel_ppg').val($(this).siblings('.fuel_data').find('.ppg').html());
+				$('#fuel_cost').val($(this).siblings('.fuel_data').find('.cost').html());
+			});
+		
+		
 		})		
 	</script>
 	<!-- Toggle Fuel Form -->
