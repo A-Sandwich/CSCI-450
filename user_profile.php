@@ -31,6 +31,7 @@
 	?>
 	<?php 
 		$profileUser = new User();
+		$profileUser->update_most_recent_mileage($_SESSION['user_id']);
 		$profileUser->fillOutProfile();
 	?>
 	<div class="col-lg-offset-1 col-lg-2 col-xs-2 col-md-2" id="picture_wrapper">
@@ -103,9 +104,10 @@
 										$counter++;
 									}
 								?>
-								<div>
+								<span id="show_repair" style="white-space: nowrap ;display: inline-block;"> <h4 style="white-space: nowrap ;display: inline-block;">Got repair</h4><span style="white-space: nowrap ;display: inline-block;" class = "glyphicon glyphicon-chevron-down"></span></span>
+								
+								<div id="maintenance_form">
 									<form class="form-horizontal" name="got_repair_form" id="got_repair_form" action="assets/files/process_got_repair.php" method="post">
-										<h4>Got repair</h4>
 										<input id="maintenance_date" type="date" class="form-control" name="got_repair_date" />
 										<input id="maintenance_parts" type="text" class="form-control" name="got_repair_part" placeholder="part? or.." />
 										<input id="maintenance_service" type="text" class="form-control" name="got_repair_service" placeholder="service?" />
@@ -128,9 +130,9 @@
 									echo'<div class="repair">';
 									foreach ($profileUser->cars as $car) {
 										echo'<div class="car_repair '.$active.'">';
-										$maintenaces_data = $newCar->getMaintenances($car[5]); // car[5] is the userCarId column from the users_cars table
-										$maintenaces_data = array_reverse($maintenaces_data);
-										foreach($maintenaces_data as $maintenance){
+										$maintenances_data = $newCar->getMaintenances($car[5]); // car[5] is the userCarId column from the users_cars table
+										$maintenances_data = array_reverse($maintenances_data);
+										foreach($maintenances_data as $maintenance){
 											echo'<div class="individual_maintenance" name="'.$maintenance[6].'">';
 											echo'<button class="invisible edit_maintenance form-control btn btn-warning btn-xs" value="edit" name="'.$maintenance[6].'"/>Edit</button>';
 											echo'<h4><strong>Date:</strong><div class="maintenance_date" style="display: inline">'.$maintenance[0].'</div></h4>';
@@ -329,7 +331,8 @@
 				$('#maintenance_mileage').val($(this).siblings('.maintenance_mileage').html());
 			});		
 		
-		
+			$('#fuelForm').slideToggle("slow");
+			$('#maintenance_form').slideToggle("slow");
 		});
 	</script>
 	
@@ -337,6 +340,10 @@
 	<script type="text/javascript">
 		$('#show_fuel').click(function(){
 			$('#fuelForm').slideToggle("slow");
+		});
+		
+		$('#show_repair').click(function(){
+			$('#maintenance_form').slideToggle("slow");
 		});
 		
 	</script>

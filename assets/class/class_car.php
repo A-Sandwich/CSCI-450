@@ -115,10 +115,10 @@ class Car extends Entity {
 				if($gallons > 0){
 					$fuel_economy[] = ($sum_m / $gallons);
 				} else {
-					$fuel_economy = 0;
+					$fuel_economy[] = 0;
 				}
 			}else{
-				$fuel_economy = 0;
+				$fuel_economy[] = 0;
 			}
 			
 		}
