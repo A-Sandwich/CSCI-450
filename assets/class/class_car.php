@@ -41,7 +41,7 @@ class Car extends Entity {
 	
 	function getFuelUps($car_id){
 		$get_user_car_fuel_up = $this->db->prepare("SELECT date, current_mileage, ppg, cost, user_id, userCarId, ID FROM fuel_purchases
-												   WHERE userCarId = '$car_id'");
+												   WHERE userCarId = '$car_id' order by current_mileage");
 		$get_user_car_fuel_up->execute();
 		$get_user_car_fuel_up->bind_result($date, $current_milage, $ppg, $cost, $user_id, $userCarId, $fuel_up_unique_ID);
 		$all_refuels = array();
@@ -99,14 +99,18 @@ class Car extends Entity {
 			$counter = 0;
 			if(count($c) > 1){
 				foreach($c as $f) {
-					if($counter == 1){
+					if($counter == 0){
 						$initial = $f[1];
-					}else if($counter == 2){
+						//$gallons += ($f[3]/$f[2]);
+					}else if($counter == 1){
 						$sum_m = ($f[1] - $initial);
+						$gallons += ($f[3]/$f[2]);
+					}else{
+						$sum_m += ($f[1]-$previous_mileage);
+						$gallons += ($f[3]/$f[2]);
 					}
-					$sum_m += ($f[1]-$sum_m);
-					$gallons += ($f[3]/$f[2]);
 					$counter ++;
+					$previous_mileage = $f[1];
 				}
 				if($gallons > 0){
 					$fuel_economy[] = ($sum_m / $gallons);
