@@ -84,6 +84,7 @@ class Car extends Entity {
 		$get_users_car_ids_query = $this->db->prepare("SELECT id FROM users_cars WHERE user_id = '$uId' ");
 		$get_users_car_ids_query->execute();
 		$get_users_car_ids_query->bind_result($cId);
+		$users_cars = array();
 		while($get_users_car_ids_query->fetch()){
 			$users_cars[] = $cId;
 		}
@@ -98,7 +99,12 @@ class Car extends Entity {
 				$sum_m += ($f[1]-$sum_m);
 				$gallons += ($f[3]/$f[2]);
 			}
-			$fuel_economy[] = ($sum_m / $gallons);
+			if($gallons > 0){
+				$fuel_economy[] = ($sum_m / $gallons);
+			} else {
+				$fuel_economy = 0;
+			}
+			
 		}
 		return $fuel_economy;
 	}

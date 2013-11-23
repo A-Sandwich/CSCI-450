@@ -92,7 +92,7 @@ class User extends Entity {
 		$edit_fuelup_query->close();
 		
 		if($old_miles < $new_mileage) {
-			$update_mileage_query = $this->db->prepare("UPDATE users_cars SET mileage = '$got_fuel_mileage' WHERE user_id = '$uid' AND id = '$userCarId'");
+			$update_mileage_query = $this->db->prepare("UPDATE users_cars SET mileage = '$new_mileage' WHERE user_id = '$uid' AND id = '$userCarId'");
 			$update_mileage_query->execute();
 			$update_mileage_query->close();
 		}
@@ -107,9 +107,23 @@ class User extends Entity {
 	}
 	
 	function edit_repair ($new_date, $new_part, $new_service, $new_mileage, $got_repair_car_id, $repair_unique_row_id) {
-		$edit_repair_query = $this->db->prepare("UPDATE repair_temp SET date='$new_date',part='$new_part',service='$new_service',mileage='$new_mileage'");
+		$userid=$_SESSION['user_id'];
+		$figure_out_current_mileage_query = $this->db->prepare("SELECT mileage FROM users_cars WHERE user_id = '$userid' AND id='$got_repair_car_id'");
+		$figure_out_current_mileage_query->execute();
+		$figure_out_current_mileage_query->bind_result($old_miles);
+		$figure_out_current_mileage_query->store_result();
+		$figure_out_current_mileage_query->fetch();
+		$figure_out_current_mileage_query->close();
+		
+		$edit_repair_query = $this->db->prepare("UPDATE repair_temp SET date='$new_date', part='$new_part', service='$new_service', mileage='$new_mileage'");
 		$edit_repair_query->execute();
 		$edit_repair_query->close();
+		
+		if($old_miles < $new_mileage) {
+			$update_mileage_query = $this->db->prepare("UPDATE users_cars SET mileage = '$new_mileage' WHERE user_id = '$uid' AND id = '$userCarId'");
+			$update_mileage_query->execute();
+			$update_mileage_query->close();
+		}
 	}
 }
 
