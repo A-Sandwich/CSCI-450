@@ -125,6 +125,42 @@ class User extends Entity {
 			$update_mileage_query->close();
 		}
 	}
+	
+	function update_most_recent_mileage($uId) {
+		
+		$get_users_car_ids_query = $this->db->prepare("SELECT id FROM users_cars WHERE user_id = '$uId' ");
+		$get_users_car_ids_query->execute();
+		$get_users_car_ids_query->bind_result($cId);
+		$users_cars = array();
+		while($get_users_car_ids_query->fetch()){
+			$users_cars[] = $cId;
+		}
+		$mileages = array();
+		foreach($users_cars as $i) {
+			$highest_mileage_from_repairs_query = $this->db->prepare("SELECT mileage FROM repair_temp WHERE user_id = '$uId' AND car_id='$i' ORDER BY mileage DESC LIMIT 1");
+			$highest_mileage_from_repairs_query->execute();
+			$highest_mileage_from_repairs_query->bind_result($r_highest);
+			$highest_mileage_from_repairs_query->store_result();
+			$highest_mileage_from_repairs_query->fetch();
+			$highest_mileage_from_repairs_query->close();
+			if($r_highest != NULL) {
+				 $mileages[$i] = $r_highest; 
+			}
+			
+			$highest_mileage_from_fuelups_query = $this->db->prepare("SELECT current_mileage FROM fuel_purchases WHERE user_id = '$uId' AND userCarId='$i' ORDER BY current_mileage DESC LIMIT 1");
+			$highest_mileage_from_fuelups_query->execute();
+			$highest_mileage_from_fuelups_query->bind_result($f_highest);
+			$highest_mileage_from_fuelups_query->store_result();
+			$highest_mileage_from_fuelups_query->fetch();
+			$highest_mileage_from_fuelups_query->close();
+			if($f_highest != NULL && $f_highest > $mileages[$i]) {
+				 $mileages[$i] = $f_highest; 
+			}
+			$update_users_cars_mileage_query = $this->db->prepare("UPDATE users_cars SET mileage = '$mileages[$i]' WHERE user_id='$uID' AND id='$i'");
+			$update_users_cars_mileage_query->execute();
+			$update_users_cars_mileage_query->close();
+		}
+	}
 }
 
 ?>
