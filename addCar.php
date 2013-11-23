@@ -72,25 +72,24 @@
 				          			
 			          			</div>
 	          				</div><!--/-->
-		        			<div class=" col-3 col-sm-6 col-lg-6">
-			          			<h4>Would you like to add information about your last oil change?</h4>
-			          			<input type="radio" name="oilChange" value="1">Yes
-			          			<input type="radio" name="oilChange" value="0">No<br>
-			          			<div class="showHide oilChange">
-			          				<label for="oilChangeDate">Date of last oil change:</label><input type="date" id="oilChangeDate" name="oilChangeDate"><br>
-			          				<label for="oilChangeMilage">Milage during last oil change:</label><input type="number" id="oilChangeMilage" name="oilChangeMilage"><br>
-			          				<label for="oilChangeType">Type of oil used:</label><input type="text" id="oilChangeType" name="oilChangeType"><br>
-			          				<h4>Did you also change your filter?</h4>
-			          				<input type="radio" name="oilFilter" value="1">Yes
-			          				<input type="radio" name="oilFilter" value="0">No<br>
-			          				<div class="showHide oilFilter">
-			          					<label for="oilFilter">Oil filter used:</label><input type="text" id="oilFilter" name="oilFilter"><br>
-			          					<!--This drop down could be removed if we can match an oil filter to their car
-			          						or we could "suggest" a filter that matches and give the user the option
-			          						to change it. -->
-			          				</div>
-			          			</div>
-		          			</div>
+		        			<!--
+							<div class=" col-3 col-sm-6 col-lg-6">
+															  <h4>Would you like to add information about your last oil change?</h4>
+															  <input type="radio" name="oilChange" value="1">Yes
+															  <input type="radio" name="oilChange" value="0">No<br>
+															  <div class="showHide oilChange">
+																  <label for="oilChangeDate">Date of last oil change:</label><input type="date" id="oilChangeDate" name="oilChangeDate"><br>
+																  <label for="oilChangeMilage">Milage during last oil change:</label><input type="number" id="oilChangeMilage" name="oilChangeMilage"><br>
+																  <label for="oilChangeType">Type of oil used:</label><input type="text" id="oilChangeType" name="oilChangeType"><br>
+																  <h4>Did you also change your filter?</h4>
+																  <input type="radio" name="oilFilter" value="1">Yes
+																  <input type="radio" name="oilFilter" value="0">No<br>
+																  <div class="showHide oilFilter">
+																	  <label for="oilFilter">Oil filter used:</label><input type="text" id="oilFilter" name="oilFilter"><br>
+																								</div>
+															  </div>
+														  </div>-->
+							
 		          		</div>
 		          		<br><button class="btn btn-primary"type="submit" name="submit" id="savecar">Save Car</button>
 		          		<a class="btn btn-danger" href="./index.php?addlater=1">Add a car later</a>

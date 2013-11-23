@@ -3,6 +3,18 @@
 	visibility:hidden;	
 }
 
+.edit_fuel{
+	width: 20%;
+	height: 80%;
+	float:right;
+}
+
+.edit_maintenance{
+	width: 20%;
+	height: 80%;
+	float:right;
+}
+
 .car-active{
 	color: #0099cc;
 	text-shadow: -6px -6px  16px #000;

@@ -57,16 +57,25 @@
 			<div class="jumbotron garage" style="overflow-x:auto;"><!--User's Garage-->
 				<?php
 					$active = 'car-active';
-					foreach ($profileUser->cars as $car) {
-						echo '<span name="'.$car[5].'" class="'.$active.' car"><img name="'.$car[5].'" class="'.$active.' car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
-						echo $car[0] . ' ' . $car[1].'</span>';
-						$active = '';
+					if(count($profileUser->cars) > 0){
+						foreach ($profileUser->cars as $car) {
+							echo '<span name="'.$car[5].'" class="'.$active.' car"><img name="'.$car[5].'" class="'.$active.' car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/> ';
+							echo $car[0] . ' ' . $car[1].'</span>';
+							$active = '';
+						}
+					}else{
+						echo '<a style="text-decoration: none;" href="http://novusgarage.x10.mx/addCar.php" name="'.$car[5].'" class="car-active car"><img name="0" class="car-active car" src="assets/images/glyphicons_free/glyphicons/png/glyphicons_005_car.png" style="margin-left: 120px;"/>+ Add a Car</a>';
+						echo '<script type="text/javascript">
+							$("document").ready(function(){
+								$(".has_cars").addClass("invisible");
+							});
+						</script>';
 					}
 
 				?>
 			</div>
-
-			<div class="col-lg-4">
+			
+			<div class="col-lg-4 has_cars">
 				<?php
 					$active = '';
 					$counter = 0;
@@ -106,17 +115,23 @@
 										<input type="submit" class="form-control btn btn-primary" name="got_repair_submit" />
 									</form>
 								</div>
-							
-								<h3>Repairs:</h3>
+								<?php
+									
+								?>
 								<?php
 									$newCar = new Car();
 									$active = '';
+									$size = $newCar->getMaintenances($car[5]);
+									if(count($size)>0){
+										echo'<h3>Repairs:</h3>';
+									}
 									echo'<div class="repair">';
 									foreach ($profileUser->cars as $car) {
 										echo'<div class="car_repair '.$active.'">';
 										$maintenaces_data = $newCar->getMaintenances($car[5]); // car[5] is the userCarId column from the users_cars table
 										foreach($maintenaces_data as $maintenance){
 											echo'<div class="individual_maintenance" name="'.$maintenance[6].'">';
+											echo'<button class="invisible edit_maintenance form-control btn btn-warning btn-xs" value="edit" name="'.$maintenance[6].'"/>Edit</button>';
 											echo'<h4><strong>Date:</strong><div class="maintenance_date" style="display: inline">'.$maintenance[0].'</div></h4>';
 											if($maintenance[1] != ''){
 												echo'<strong>Part(s) used: </strong><div class="maintenance_parts" style="display: inline">'.$maintenance[1].'</div><br />';
@@ -125,7 +140,7 @@
 												echo'<strong>Service: </strong><div class="maintenance_service" style="display: inline">'.$maintenance[2].'</div><br />';
 											}
 											echo'<strong>Mileage: </strong><div class="maintenance_mileage" style="display: inline">'.$maintenance[3].'</div><br />';
-											echo'<button class="invisible edit_maintenance form-control btn btn-primary btn-xs" value="edit" name="'.$maintenance[6].'"/>Edit</button>';
+											 
 											echo'</div>';
 										}
 										echo'</div>';
@@ -134,16 +149,19 @@
 									echo'</div>'
 								?>
 							</div>
-							<div class="col-lg-offset-2 col-lg-4">
+							<div class="col-lg-offset-2 col-lg-4 has_cars">
 								<h3>Fuel Economy:</h3>
 								
 								<?php
 									$fuel_economy = $newCar->calculateFuelEconomy($_SESSION['user_id']);
 									$active = '';
 									echo'<div class="mpg">';
-									foreach ($fuel_economy as $mpg){
-										echo'<h3 class="individual_mpg '.$active.'">'.$mpg.' mpg</h3>';
-										$active = 'invisible';
+									
+									if($fuel_economy!= 0){
+										foreach ($fuel_economy as $mpg){
+											echo'<h3 class="individual_mpg '.$active.'">'.$mpg.' mpg</h3>';
+											$active = 'invisible';
+										};
 									};
 									echo'</div>';
 								?>
@@ -158,10 +176,15 @@
 										<input type="text" id="fuel_cost" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
 										<input type="number" id="fuelCarId" value="0" class="form-control invisible" name="got_fuel_car_id"/>
 										<input type="number" id="updateFuelCarId" value="0" class="form-control invisible" name="update_fuel_up"/>
+										<label><input type="checkbox" class="" name="missed_fuel_up"> Missed a fuel up.</label>
 										<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
 									</form>
 								</div>
-								<h3>Past Fuel Ups:</h3>
+								<?php
+									if($fuel_economy!= 0){
+										echo'<h3>Past Fuel Ups:</h3>';
+									}
+								?>
 								<?php
 									$newCar = new Car();
 									$active = '';
@@ -171,13 +194,13 @@
 										$fuel_up_info = $newCar->getFuelUps($car[5]); // car[5] is the userCarId column from the users_cars table
 										foreach($fuel_up_info as $fuel){
 											echo'<div class="individual_fuel_up" name="'.$fuel[6].'">';
+											echo'<button class="invisible edit_fuel form-control btn btn-warning btn-xs" value="edit" name="'.$fuel[6].'"/>Edit</button>';
 											echo'<h4><strong>Date:</strong>'.$fuel[0].'</h4>';
 											echo'<p>';
 											echo'<strong>Mileage: </strong>'.$fuel[1].'<br />';
 											echo'<strong>Price Per Gallon: </strong>'.$fuel[2].'<br />';
 											echo'<strong>Total Cost: </strong>'.$fuel[3].'<br />';
 											echo'</p>';
-											echo'<button class="invisible edit_fuel form-control btn btn-primary btn-xs" value="edit" name="'.$fuel[6].'"/>Edit</button>';
 											echo'<div class="fuel_data invisible"><p class="date">'.$fuel[0].'</p>';
 											echo'<p class="mileage">'.$fuel[1].'</p>';
 											echo'<p class="ppg">'.$fuel[2].'</p>';
