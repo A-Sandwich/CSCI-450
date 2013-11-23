@@ -15,7 +15,7 @@
 		<div class="login col-lg-offset-4 col-lg-4">
 			<h1 class="signUp">Sign Up</h1>
 			<form name="signupform" action="assets/registration.php" method="post" style="padding:20px;">
-				<!--<label for="email" clas="25">E-Mail:</label>--><input type="text" name="email" class="login form-control signup" id="email" placeholder="email address"><br>
+				<!--<label for="email" clas="25">E-Mail:</label>--><input type="email" name="email" class="login form-control signup" id="email" placeholder="email address"><br>
 				<!--<label for="name" class="25">Username:</label>--><input type="text" name="name" class="login form-control signup" id="name" placeholder="username"> <br>
 				<!--<label for="bday" class="25">Birthday:</label>--><input type="date" name="bday" class="login form-control signup" id="bday"><br>
 				<!--<label for="password" class="25">Password:</label>--><input type="password" name="password" class="login form-control signup" id="password" placeholder="password"><br>
