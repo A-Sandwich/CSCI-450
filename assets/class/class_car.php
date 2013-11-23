@@ -40,10 +40,10 @@ class Car extends Entity {
 	}
 	
 	function getFuelUps($car_id){
-		$get_user_car_fuel_up = $this->db->prepare("SELECT date, current_mileage, ppg, cost, user_id, userCarId FROM fuel_purchases
+		$get_user_car_fuel_up = $this->db->prepare("SELECT date, current_mileage, ppg, cost, user_id, userCarId, ID FROM fuel_purchases
 												   WHERE userCarId = '$car_id'");
 		$get_user_car_fuel_up->execute();
-		$get_user_car_fuel_up->bind_result($date, $current_milage, $ppg, $cost, $user_id, $userCarId);
+		$get_user_car_fuel_up->bind_result($date, $current_milage, $ppg, $cost, $user_id, $userCarId, $fuel_up_unique_ID);
 		$all_refuels = array();
 		$fuel_up = array();
 		while($get_user_car_fuel_up->fetch()){
@@ -53,16 +53,17 @@ class Car extends Entity {
 			$fuel_up[3] = $cost;
 			$fuel_up[4] = $user_id;
 			$fuel_up[5] = $userCarId;
+			$fuel_up[6] = $fuel_up_unique_ID;
 			$all_refuels[] = $fuel_up;
 		}
 		return $all_refuels;
 	}
 	
 	function getMaintenances($car_id) {
-		$get_user_car_maintenances= $this->db->prepare("SELECT date, part, service, mileage, user_id, car_id FROM repair_temp 
+		$get_user_car_maintenances= $this->db->prepare("SELECT date, part, service, mileage, user_id, car_id, ID FROM repair_temp 
 														WHERE car_id = '$car_id'");
 		$get_user_car_maintenances->execute();
-		$get_user_car_maintenances->bind_result($date, $part, $service, $mileage, $user_id, $cid);
+		$get_user_car_maintenances->bind_result($date, $part, $service, $mileage, $user_id, $cid, $maintenances_unique_ID);
 		$all_repairs = array();
 		$repair = array();
 		while($get_user_car_maintenances->fetch()) {
@@ -72,6 +73,7 @@ class Car extends Entity {
 			$repair[3] = $mileage;
 			$repair[4] = $user_id;
 			$repair[5] = $cid;
+			$repair[6] = $maintenances_unique_ID;
 		}
 	}
 	

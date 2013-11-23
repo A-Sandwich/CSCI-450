@@ -134,7 +134,7 @@
 										echo'<div class="car_fuel_up '.$active.'">';
 										$fuel_up_info = $newCar->getFuelUps($car[5]); // car[5] is the userCarId column from the users_cars table
 										foreach($fuel_up_info as $fuel){
-											echo'<div class="individual_fuel_up">';
+											echo'<div class="individual_fuel_up" name="'.$fuel[6].'">';
 											echo'<h4>Date:'.$fuel[0].'</h4>';
 											echo'<p>';
 											echo'Mileage: '.$fuel[1].'<br />';
@@ -216,9 +216,7 @@
 				
 				$('#fuelCarId').val(this.getAttribute('name'));
 				$('#repairCarId').val(this.getAttribute('name'));
-				//debugger;
 			});
-			
 			$('#repairCarId').val($('.car-active')[0].getAttribute('name'));
 			$('#fuelCarId').val($('.car-active')[0].getAttribute('name'));
 		})		
