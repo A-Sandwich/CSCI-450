@@ -136,6 +136,18 @@
 							</div>
 							<div class="col-lg-offset-2 col-lg-4">
 								<h3>Fuel Economy:</h3>
+								
+								<?php
+									$fuel_economy = $newCar->calculateFuelEconomy($_SESSION['user_id']);
+									$active = '';
+									echo'<div class="mpg">';
+									foreach ($fuel_economy as $mpg){
+										echo'<h3 class="individual_mpg '.$active.'">'.$mpg.' mpg</h3>';
+										$active = 'invisible';
+									};
+									echo'</div>';
+								?>
+								
 								<span id="show_fuel" style="white-space: nowrap ;display: inline-block;"> <h4 style="white-space: nowrap ;display: inline-block;">Got fuel</h4><span style="white-space: nowrap ;display: inline-block;" class = "glyphicon glyphicon-chevron-down"></span></span>
 								
 								<div id="fuelForm">
@@ -155,10 +167,10 @@
 									$active = '';
 									echo'<div class="fuel_ups">';
 									foreach ($profileUser->cars as $car) {
-										echo'<div class="maintenance '.$active.'">';
+										echo'<div class="car_fuel_up '.$active.'">';
 										$fuel_up_info = $newCar->getFuelUps($car[5]); // car[5] is the userCarId column from the users_cars table
 										foreach($fuel_up_info as $fuel){
-											echo'<div class="individual_maintenance" name="'.$fuel[6].'">';
+											echo'<div class="individual_fuel_up" name="'.$fuel[6].'">';
 											echo'<h4><strong>Date:</strong>'.$fuel[0].'</h4>';
 											echo'<p>';
 											echo'<strong>Mileage: </strong>'.$fuel[1].'<br />';
@@ -235,6 +247,7 @@
 		$(document).ready(function(){
 			$('.car').click(function(){
 				$($('.car_repair')[$('.car-active').index()]).addClass('invisible');
+				$($('.individual_mpg')[$('.car-active').index()]).addClass('invisible');
 				$($('.odometer')[$('.car-active').index()]).addClass('invisible');
 				$($('.odometer_header')[$('.car-active').index()]).addClass('invisible');
 				$($('.car_fuel_up')[$('.car-active').index()]).addClass('invisible');
@@ -244,10 +257,13 @@
 				$($('.odometer_header')[$(this).index()]).removeClass('invisible');
 				$($('.car_fuel_up')[$(this).index()]).removeClass('invisible');
 				$($('.car_repair')[$(this).index()]).removeClass('invisible');
+				$($('.individual_mpg')[$(this).index()]).removeClass('invisible');
 				
+				//Associates form with selected car
 				$('#fuelCarId').val(this.getAttribute('name'));
 				$('#repairCarId').val(this.getAttribute('name'));
 				
+				//Resets edit fuel fields.
 				$('#updateRepairCarId').val(0);
 				$('#updateFuelCarId').val(0);
 			});
