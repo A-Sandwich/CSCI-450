@@ -80,15 +80,27 @@ class Car extends Entity {
 	}
 	
 	function calculateFuelEconomy($uId) {
+		$fuel_economy = array();
 		$get_users_car_ids_query = $this->db->prepare("SELECT id FROM users_cars WHERE user_id = '$uId' ");
 		$get_users_car_ids_query->execute();
 		$get_users_car_ids_query->bind_result($cId);
 		while($get_users_car_ids_query->fetch()){
 			$users_cars[] = $cId;
 		}
+		$refuels = array();
 		foreach($users_cars as $carId) {
-			$refuels = $this->getFuelUps($carId);
+			$refuels[] = $this->getFuelUps($carId);
 		}
+		foreach($refuels as $c) {
+			$sum_m = 0;
+			$gallons = 0;
+			foreach($c as $f) {
+				$sum_m += ($f[1]-$sum_m);
+				$gallons += ($f[3]/$f[2]);
+			}
+			$fuel_economy[] = ($sum_m / $gallons);
+		}
+		return $fuel_economy;
 	}
 	
 	/*
