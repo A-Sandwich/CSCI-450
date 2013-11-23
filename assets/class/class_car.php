@@ -76,7 +76,7 @@ class Car extends Entity {
 			$maintenances[6] = $maintenances_unique_ID;
 			$all_repairs[] = $maintenances;
 		}
-		return $maintenances;
+		return $all_repairs;
 	}
 	
 	function calculateFuelEconomy($uId) {
