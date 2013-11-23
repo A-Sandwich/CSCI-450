@@ -129,6 +129,7 @@
 									foreach ($profileUser->cars as $car) {
 										echo'<div class="car_repair '.$active.'">';
 										$maintenaces_data = $newCar->getMaintenances($car[5]); // car[5] is the userCarId column from the users_cars table
+										$maintenaces_data = array_reverse($maintenaces_data);
 										foreach($maintenaces_data as $maintenance){
 											echo'<div class="individual_maintenance" name="'.$maintenance[6].'">';
 											echo'<button class="invisible edit_maintenance form-control btn btn-warning btn-xs" value="edit" name="'.$maintenance[6].'"/>Edit</button>';
@@ -192,6 +193,7 @@
 									foreach ($profileUser->cars as $car) {
 										echo'<div class="car_fuel_up '.$active.'">';
 										$fuel_up_info = $newCar->getFuelUps($car[5]); // car[5] is the userCarId column from the users_cars table
+										$fuel_up_info = array_reverse($fuel_up_info);
 										foreach($fuel_up_info as $fuel){
 											echo'<div class="individual_fuel_up" name="'.$fuel[6].'">';
 											echo'<button class="invisible edit_fuel form-control btn btn-warning btn-xs" value="edit" name="'.$fuel[6].'"/>Edit</button>';
