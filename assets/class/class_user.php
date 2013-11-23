@@ -78,10 +78,24 @@ class User extends Entity {
 	}
 	
 	function edit_fuelup($new_date, $new_mileage, $new_ppg, $new_total_cost, $uid, $userCarId, $fuel_up_unique_row_id) {
+		
+		$figure_out_current_mileage_query = $this->db->prepare("SELECT mileage FROM users_cars WHERE user_id = '$uid' AND id='$userCarId'");
+		$figure_out_current_mileage_query->execute();
+		$figure_out_current_mileage_query->bind_result($old_miles);
+		$figure_out_current_mileage_query->store_result();
+		$figure_out_current_mileage_query->fetch();
+		$figure_out_current_mileage_query->close();
+		
 		$edit_fuelup_query = $this->db->prepare("UPDATE fuel_purchases SET date = '$new_date' , current_mileage = '$new_mileage', ppg = '$new_ppg', cost = '$new_total_cost'
 							 WHERE ID = '$fuel_up_unique_row_id' ");
 		$edit_fuelup_query->execute();
 		$edit_fuelup_query->close();
+		
+		if($old_miles < $new_mileage) {
+			$update_mileage_query = $this->db->prepare("UPDATE users_cars SET mileage = '$got_fuel_mileage' WHERE user_id = '$uid' AND id = '$userCarId'");
+			$update_mileage_query->execute();
+			$update_mileage_query->close();
+		}
 	}
 	
 	function add_got_repair($got_repair_date, $got_repair_part, $got_repair_service, $got_repair_mileage, $got_repair_car_id)  {

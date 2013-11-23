@@ -2,7 +2,7 @@
 include "db_connect.php";
 
 
-$get_all_car_makes_query = $mysqli->prepare('SELECT DISTINCT Make FROM cars');
+$get_all_car_makes_query = $mysqli->prepare('SELECT DISTINCT Make FROM cars ORDER BY Make');
 $get_all_car_makes_query->execute();
 $get_all_car_makes_query->bind_result($make);
 
