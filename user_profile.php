@@ -336,6 +336,7 @@
 				$('#fuel_mileage').val($(this).siblings('.fuel_data').find('.mileage').html());
 				$('#fuel_ppg').val($(this).siblings('.fuel_data').find('.ppg').html());
 				$('#fuel_cost').val($(this).siblings('.fuel_data').find('.cost').html());
+				$('#fuelForm').slideToggle("slow");
 			});
 				
 			$('.edit_maintenance').click(function(){
@@ -344,6 +345,7 @@
 				$('#maintenance_parts').val($(this).siblings('.maintenance_parts').html());
 				$('#maintenance_service').val($(this).siblings('.maintenance_service').html());
 				$('#maintenance_mileage').val($(this).siblings('.maintenance_mileage').html());
+				$('#maintenance_form').slideToggle("slow");
 			});		
 		
 			$('#fuelForm').slideToggle("slow");

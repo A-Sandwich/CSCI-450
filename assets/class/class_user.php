@@ -78,24 +78,10 @@ class User extends Entity {
 	}
 	
 	function edit_fuelup($new_date, $new_mileage, $new_ppg, $new_total_cost, $uid, $userCarId, $fuel_up_unique_row_id) {
-		
-		$figure_out_current_mileage_query = $this->db->prepare("SELECT mileage FROM users_cars WHERE user_id = '$uid' AND id='$userCarId'");
-		$figure_out_current_mileage_query->execute();
-		$figure_out_current_mileage_query->bind_result($old_miles);
-		$figure_out_current_mileage_query->store_result();
-		$figure_out_current_mileage_query->fetch();
-		$figure_out_current_mileage_query->close();
-		
 		$edit_fuelup_query = $this->db->prepare("UPDATE fuel_purchases SET date = '$new_date' , current_mileage = '$new_mileage', ppg = '$new_ppg', cost = '$new_total_cost'
 							 WHERE ID = '$fuel_up_unique_row_id' ");
 		$edit_fuelup_query->execute();
 		$edit_fuelup_query->close();
-		
-		if($old_miles < $new_mileage) {
-			$update_mileage_query = $this->db->prepare("UPDATE users_cars SET mileage = '$new_mileage' WHERE user_id = '$uid' AND id = '$userCarId'");
-			$update_mileage_query->execute();
-			$update_mileage_query->close();
-		}
 	}
 	
 	function add_got_repair($got_repair_date, $got_repair_part, $got_repair_service, $got_repair_mileage, $got_repair_car_id)  {
@@ -107,23 +93,10 @@ class User extends Entity {
 	}
 	
 	function edit_repair ($new_date, $new_part, $new_service, $new_mileage, $got_repair_car_id, $repair_unique_row_id) {
-		$userid=$_SESSION['user_id'];
-		$figure_out_current_mileage_query = $this->db->prepare("SELECT mileage FROM users_cars WHERE user_id = '$userid' AND id='$got_repair_car_id'");
-		$figure_out_current_mileage_query->execute();
-		$figure_out_current_mileage_query->bind_result($old_miles);
-		$figure_out_current_mileage_query->store_result();
-		$figure_out_current_mileage_query->fetch();
-		$figure_out_current_mileage_query->close();
-		
 		$edit_repair_query = $this->db->prepare("UPDATE repair_temp SET date='$new_date', part='$new_part', service='$new_service', mileage='$new_mileage'");
 		$edit_repair_query->execute();
 		$edit_repair_query->close();
 		
-		if($old_miles < $new_mileage) {
-			$update_mileage_query = $this->db->prepare("UPDATE users_cars SET mileage = '$new_mileage' WHERE user_id = '$uid' AND id = '$userCarId'");
-			$update_mileage_query->execute();
-			$update_mileage_query->close();
-		}
 	}
 	
 	function update_most_recent_mileage($uId) {
@@ -132,33 +105,36 @@ class User extends Entity {
 		$get_users_car_ids_query->execute();
 		$get_users_car_ids_query->bind_result($cId);
 		$users_cars = array();
-		while($get_users_car_ids_query->fetch()){
-			$users_cars[] = $cId;
+		while($get_users_car_ids_query->fetch()) {
+			$users_cars[] = $cId; // $users_cars array holds all the car ids for a user
 		}
-		$mileages = array();
 		foreach($users_cars as $i) {
-			$highest_mileage_from_repairs_query = $this->db->prepare("SELECT mileage FROM repair_temp WHERE user_id = '$uId' AND car_id='$i' ORDER BY mileage DESC LIMIT 1");
+			$highest_mileage_from_repairs_query = $this->db->prepare("SELECT MAX(mileage) FROM repair_temp WHERE user_id = '$uId' AND car_id='$i' ");
 			$highest_mileage_from_repairs_query->execute();
 			$highest_mileage_from_repairs_query->bind_result($r_highest);
 			$highest_mileage_from_repairs_query->store_result();
 			$highest_mileage_from_repairs_query->fetch();
 			$highest_mileage_from_repairs_query->close();
 			if($r_highest != NULL) {
-				 $mileages[$i] = $r_highest; 
+				 $highest_mileage = $r_highest; 
 			}
 			
-			$highest_mileage_from_fuelups_query = $this->db->prepare("SELECT current_mileage FROM fuel_purchases WHERE user_id = '$uId' AND userCarId='$i' ORDER BY current_mileage DESC LIMIT 1");
+			$highest_mileage_from_fuelups_query = $this->db->prepare("SELECT MAX(current_mileage) FROM fuel_purchases WHERE user_id = '$uId' AND userCarId='$i' ");
 			$highest_mileage_from_fuelups_query->execute();
 			$highest_mileage_from_fuelups_query->bind_result($f_highest);
 			$highest_mileage_from_fuelups_query->store_result();
 			$highest_mileage_from_fuelups_query->fetch();
 			$highest_mileage_from_fuelups_query->close();
-			if($f_highest != NULL && $f_highest > $mileages[$i]) {
-				 $mileages[$i] = $f_highest; 
+			if($f_highest != NULL && $f_highest >= $r_highest) {
+				 $highest_mileage = $f_highest; 
 			}
-			$update_users_cars_mileage_query = $this->db->prepare("UPDATE users_cars SET mileage = '$mileages[$i]' WHERE user_id='$uID' AND id='$i'");
-			$update_users_cars_mileage_query->execute();
-			$update_users_cars_mileage_query->close();
+			if($highest_mileage != NULL) {
+				$update_users_cars_mileage_query = $this->db->prepare("UPDATE users_cars 
+																	   SET mileage = '$highest_mileage' 
+																	   WHERE user_id='$uId' AND id='$i'");
+				$update_users_cars_mileage_query->execute();
+				$update_users_cars_mileage_query->close();
+			}
 		}
 	}
 
