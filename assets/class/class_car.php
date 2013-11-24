@@ -155,6 +155,20 @@ class Car extends Entity {
 		}
 		return $cars_with_specs;
 	}
+	
+	function deleteCar($user_car__unique_id) {
+		$delete_car_query = $this->db->prepare("DELETE FROM users_cars WHERE id = '$user_car__unique_id'");
+		$delete_car_query->execute();
+		$delete_car_query->close();
+		
+		$delete_fuel_purchases_query = $this->db->prepare("DELETE FROM fuel_purchases WHERE userCarId = '$user_car__unique_id'");
+		$delete_fuel_purchases_query->execute();
+		$delete_fuel_purchases_query->close();
+		
+		$delete_from_repairs_query = $this->db->prepare("DELETE FROM repair_temp WHERE car_id = '$user_car__unique_id'");
+		$delete_from_repairs_query->execute();
+		$delete_from_repairs_query->close();
+	}
 }
 	
 ?>
