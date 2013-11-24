@@ -161,6 +161,21 @@ class User extends Entity {
 			$update_users_cars_mileage_query->close();
 		}
 	}
+
+	function get_all_users() {
+		$all_users_query = $this->db->prepare("SELECT id, username, email FROM users");
+		$all_users_query->execute();
+		$all_users_query->bind_result($id, $username, $email);
+		$user_stuff = array();
+		$users = array();
+		while($all_users_query->fetch()){
+			$user_stuff[0]=$id;
+			$user_stuff[1]=$username;
+			$user_stuff[2]=$email;
+			$users[] = $user_stuff;
+		}
+		return $users;
+	}
 }
 
 ?>
