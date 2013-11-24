@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="Novus" content="">
-		<link rel="shortcut icon" href="assets/bootstrap-3/assets/ico/favicon.png">
+		<link rel="shortcut icon" href="assets/bootstrap-3/assets/images/novus_logo.png">
 
 		<!-- Bootstrap core CSS -->
 		<link href="assets/bootstrap-3/assets/css/bootstrap.min.css" rel="stylesheet">
