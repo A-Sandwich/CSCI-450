@@ -76,6 +76,21 @@
 				?>
 			</div>
 			
+			<div> 
+				<h3>All Specs dump!</h3>
+				<?php 
+					$profileCar = new Car(); 
+					$allSpecs=$profileCar->getAllSpecs($_SESSION['user_id']);
+					foreach($allSpecs as $a){
+						foreach($a as $b) {
+							echo $b . ' ';
+						}
+						echo '<br>';
+					} 
+				?>
+			  </div>
+			 
+			 
 			<div class="col-lg-4 has_cars">
 				<?php
 					$active = '';

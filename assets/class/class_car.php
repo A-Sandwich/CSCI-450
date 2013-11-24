@@ -122,16 +122,23 @@ class Car extends Entity {
 			}
 			
 		}
+		for($i=0; $i<sizeof($fuel_economy); $i++) {
+			$fuel_economy[$i] = round($fuel_economy[$i], 1);
+		}
 		return $fuel_economy;
 	}
 	
-	/*
+	
 	function getAllSpecs($uId) {
 		// using joins users_cars.car_id to cars.ID
 		
-		$get_all_my_specs_query = $this->db->prepare('SELECT Year, Make, Model, Engine, Fuel, Injection, Gallons, Power FROM cars JOIN users_cars ON cars.ID = users_cars.car_id');
+		$get_all_my_specs_query = $this->db->prepare("SELECT cars.Year, cars.Make, cars.Model, cars.Engine, cars.FuelEcon, cars.Injection, cars.Gallon, cars.Power 
+													  FROM cars 
+													  INNER JOIN users_cars 
+													  ON users_cars.car_id = cars.ID
+													  WHERE users_cars.user_id = '$uId'");
 		$get_all_my_specs_query->execute();
-		$get_all_my_specs_query->bind_result($Year, $Make, $Model, $Engine, $Fuel, $Injection, $Gallons, $Power);
+		$get_all_my_specs_query->bind_result($Year, $Make, $Model, $Engine, $FuelEcon, $Injection, $Gallons, $Power);
 		$spec = array();
 		$cars_with_specs = array();
 		while($get_all_my_specs_query->fetch())
@@ -140,14 +147,14 @@ class Car extends Entity {
 			$spec[1]= $Make;
 			$spec[2]= $Model;
 			$spec[3]= $Engine;
-			$spec[4]= $Fuel;
+			$spec[4]= $FuelEcon;
 			$spec[5]= $Injection;
 			$spec[6]= $Gallons;
 			$spec[7]= $Power;
 			$cars_with_specs[] = $spec;
 		}
 		return $cars_with_specs;
-	}*/
+	}
 }
 	
 ?>
