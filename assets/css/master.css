@@ -3,6 +3,10 @@
 	visibility:hidden;	
 }
 
+.individual_fuel_up, .individual_maintenance{
+	border-bottom:3px solid #0099cc;
+}
+
 .edit_fuel{
 	width: 20%;
 	height: 80%;

@@ -81,12 +81,21 @@
 				<?php 
 					$profileCar = new Car(); 
 					$allSpecs=$profileCar->getAllSpecs($_SESSION['user_id']);
+					$active = '';
+					echo'<div class="all_specks">';
 					foreach($allSpecs as $a){
+						echo'<div class="speck '.$active.'">';
 						foreach($a as $b) {
+							
 							echo $b . ' ';
+							
 						}
 						echo '<br>';
+						echo '</div>';
+						$active = 'invisible';
 					} 
+					echo '</div>';
+					
 				?>
 			  </div>
 			 
@@ -293,6 +302,7 @@
 				$($('.odometer')[$('.car-active').index()]).addClass('invisible');
 				$($('.odometer_header')[$('.car-active').index()]).addClass('invisible');
 				$($('.car_fuel_up')[$('.car-active').index()]).addClass('invisible');
+				$($('.speck')[$('.car-active').index()]).addClass('invisible');
 				$('.car-active').removeClass('car-active');
 				$(this).addClass('car-active');
 				$($('.odometer')[$(this).index()]).removeClass('invisible');
@@ -300,6 +310,7 @@
 				$($('.car_fuel_up')[$(this).index()]).removeClass('invisible');
 				$($('.car_repair')[$(this).index()]).removeClass('invisible');
 				$($('.individual_mpg')[$(this).index()]).removeClass('invisible');
+				$($('.speck')[$(this).index()]).removeClass('invisible');
 				
 				//Associates form with selected car
 				$('#fuelCarId').val(this.getAttribute('name'));
