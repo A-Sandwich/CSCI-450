@@ -23,6 +23,10 @@
 		?>	
 
 		<title>Profile Page</title>
+		<script type="text/javascript">
+			
+			
+		</script>
 	</head>
 
 <body>
@@ -77,7 +81,7 @@
 			</div>
 			
 			<div> 
-				<h3>All Specs dump!</h3>
+				<h3>Car Specifications:</h3>
 				<?php 
 					$profileCar = new Car(); 
 					$allSpecs=$profileCar->getAllSpecs($_SESSION['user_id']);
@@ -199,10 +203,10 @@
 									<form class="form-horizontal" name="got_fuel_form" id="got_fuel_form" action="assets/files/process_got_fuel.php" method="post">
 										<input type="date" id="fuel_date" class="form-control" name="got_fuel_date"/>
 										<input type="number" id="fuel_mileage" class="form-control" name="got_fuel_curr_mileage" placeholder="current mileage"/>
-										<input type="text" id="fuel_ppg" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
-										<input type="text" id="fuel_cost" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
-										<input type="number" id="fuelCarId" value="0" class="form-control invisible" name="got_fuel_car_id"/>
-										<input type="number" id="updateFuelCarId" value="0" class="form-control invisible" name="update_fuel_up"/>
+										<input type="number" step=".001" id="fuel_ppg" class="form-control" name="got_fuel_ppg" placeholder="price per gallon e.g. 3.189" />
+										<input type="number" step=".01" id="fuel_cost" class="form-control" name="got_fuel_total_cost" placeholder="total cost e.g. 45.27" />
+										<input type="text" id="fuelCarId" value="0" class="form-control invisible" name="got_fuel_car_id"/>
+										<input type="text" id="updateFuelCarId" value="0" class="form-control invisible" name="update_fuel_up"/>
 										<label><input type="checkbox" class="" name="missed_fuel_up"> Missed a fuel up.</label>
 										<input type="submit" class="form-control btn btn-primary" name="got_fuel_submit"/>
 									</form>
@@ -296,6 +300,8 @@
 				$("#profile_pic").html("<form action='assets/upload_profile_pic.php' method='post' enctype='multipart/form-data'> <input type='file' name='ppfile' id='ppfile'> <input type='submit' name='submit' value='Submit'></form>");
 		}
 		$(document).ready(function(){
+			
+			
 			$('.car').click(function(){
 				$($('.car_repair')[$('.car-active').index()]).addClass('invisible');
 				$($('.individual_mpg')[$('.car-active').index()]).addClass('invisible');
